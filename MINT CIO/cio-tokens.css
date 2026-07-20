@@ -1,0 +1,240 @@
+/**
+ * CIO.com Design System — Token File
+ * Extracted from https://www.cio.com/ (June 2026)
+ * 470 CSS variables scraped via live Chrome JS injection
+ *
+ * Source variables (from CIO.com live):
+ *   --color-primary-hex: #c22521
+ *   --body-ff: graphik, sans-serif
+ *   --heading-lg-ff: regis, serif
+ *   --btn-ff: attribute-mono, monospace
+ *   --btn-br: 0 (square corners — brand signature)
+ */
+
+:root {
+
+  /* ════════════════════════════════
+     BRAND
+  ════════════════════════════════ */
+  --color-primary:         #c22521;   /* CIO Crimson — extracted: --color-primary-hex */
+  --color-primary-hover:   #ab1a16;   /* extracted: --menuaside-scroll-thumb-hover */
+  --color-primary-active:  #8c1513;   /* extracted: --subscribe-btn-hover-color */
+  --color-secondary:       #0c0c0c;   /* extracted: --btn-bg-hover, --footer-color */
+  --color-tertiary:        #f1ebe5;   /* extracted: --primarynav-bg, --menuaside-bg */
+
+  /* ════════════════════════════════
+     NEUTRAL SCALE (warm-tinted)
+  ════════════════════════════════ */
+  --neutral-50:  #FAF6F4;            /* body background (computed) */
+  --neutral-100: #F1EBE5;            /* extracted: --primarynav-bg */
+  --neutral-200: #E6DCD5;            /* extracted: --footer-bg */
+  --neutral-300: #D4C8C1;
+  --neutral-400: #B4B2B1;            /* extracted: --trendingbar-link-hover-color */
+  --neutral-500: #75757A;            /* extracted: --border-color */
+  --neutral-600: #4D4D4D;            /* extracted: --footer-link-color */
+  --neutral-700: #322A2A;            /* extracted: --base-font-color */
+  --neutral-800: #1A1A1A;            /* extracted: --body-color */
+  --neutral-900: #0C0C0C;            /* extracted: --footer-color, --btn-bg-hover */
+
+  /* ════════════════════════════════
+     ACCENT
+  ════════════════════════════════ */
+  --accent-success: #21873A;         /* extracted: --deal-collection-deal--view-button--background-color */
+  --accent-warning: #D97706;
+  --accent-error:   #c22521;         /* same as primary (CIO pattern) */
+  --accent-info:    #1a4ce3;         /* extracted: --miso-banner-color */
+
+  /* ════════════════════════════════
+     TYPOGRAPHY
+     (web-safe equivalents of CIO's licensed fonts)
+  ════════════════════════════════ */
+  --font-editorial: 'Playfair Display', serif;   /* CIO: regis, serif  (--heading-lg-ff) */
+  --font-ui:        'Inter', sans-serif;           /* CIO: graphik, sans-serif (--body-ff) */
+  --font-mono:      'JetBrains Mono', monospace;   /* CIO: attribute-mono, monospace (--btn-ff) */
+
+  /* Display / Hero */
+  --type-display-size:   60px;
+  --type-display-weight: 400;
+  --type-display-lh:     1.05;
+  --type-display-ls:     -0.04em;
+  --type-display-style:  italic;
+  --type-display-font:   var(--font-editorial);
+
+  /* Headings — Editorial (h1, h2) */
+  --type-h1-size: 40px; --type-h1-weight: 400; --type-h1-lh: 1.15; --type-h1-ls: -0.04em;
+  --type-h2-size: 32px; --type-h2-weight: 400; --type-h2-lh: 1.2;  --type-h2-ls: -0.04em;
+  --type-h1-font: var(--font-editorial);
+  --type-h2-font: var(--font-editorial);
+
+  /* Headings — UI Sans (h3–h6) */
+  --type-h3-size: 24px; --type-h3-weight: 600; --type-h3-lh: 1.25; --type-h3-ls: -0.03em;
+  --type-h4-size: 20px; --type-h4-weight: 600; --type-h4-lh: 1.3;  --type-h4-ls: -0.03em;
+  --type-h5-size: 18px; --type-h5-weight: 600; --type-h5-lh: 1.35; --type-h5-ls: -0.02em;
+  --type-h6-size: 16px; --type-h6-weight: 600; --type-h6-lh: 1.4;  --type-h6-ls: -0.02em;
+  --type-h3-font: var(--font-ui); --type-h4-font: var(--font-ui);
+  --type-h5-font: var(--font-ui); --type-h6-font: var(--font-ui);
+
+  /* Body — extracted: --body-ff, --body-lh, --body-ls, --body-fw */
+  --type-body-xl-size: 20px; --type-body-xl-weight: 400; --type-body-xl-lh: 1.6;
+  --type-body-lg-size: 18px; --type-body-lg-weight: 400; --type-body-lg-lh: 1.563; /* --body-lh */
+  --type-body-md-size: 16px; --type-body-md-weight: 400; --type-body-md-lh: 1.5;
+  --type-body-sm-size: 14px; --type-body-sm-weight: 400; --type-body-sm-lh: 1.5;
+  --type-body-xs-size: 12px; --type-body-xs-weight: 400; --type-body-xs-lh: 1.4;
+  --type-body-ls:      -0.01em;   /* extracted: --body-ls */
+  --type-body-font:    var(--font-ui);
+
+  /* Label / Mono — extracted: --btn-ff, --btn-fw, --btn-ls, --btn-ts, --btn-tt */
+  --type-label-size:   12px;
+  --type-label-weight: 500;        /* --btn-fw */
+  --type-label-lh:     1.2;
+  --type-label-ls:     0.1em;      /* --btn-ls */
+  --type-label-style:  italic;     /* --btn-ts */
+  --type-label-tt:     uppercase;  /* --btn-tt */
+  --type-label-font:   var(--font-mono);
+
+  /* Caption */
+  --type-caption-size:   12px;
+  --type-caption-weight: 400;
+  --type-caption-lh:     1.4;
+  --type-caption-font:   var(--font-ui);
+
+  /* Code */
+  --type-code-size:   14px;
+  --type-code-weight: 400;
+  --type-code-lh:     1.6;
+  --type-code-font:   var(--font-mono);
+
+  /* ════════════════════════════════
+     SPACING (base 4px)
+  ════════════════════════════════ */
+  --space-0:  0px;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ════════════════════════════════
+     BORDER RADIUS
+     CIO brand signature: square/angular
+  ════════════════════════════════ */
+  --radius-none: 0px;      /* ★ default — buttons, cards, inputs */
+  --radius-xs:   2px;      /* tags, chips */
+  --radius-sm:   4px;      /* badges */
+  --radius-full: 9999px;   /* search box: --miso-search-box-border-radius */
+
+  /* ════════════════════════════════
+     STROKE
+  ════════════════════════════════ */
+  --stroke-none: 0px;
+  --stroke-xs:   0.5px;
+  --stroke-sm:   1px;      /* --btn-border thickness */
+  --stroke-md:   1.5px;
+  --stroke-lg:   2px;
+  --stroke-xl:   3px;
+
+  /* ════════════════════════════════
+     SEMANTIC — TEXT
+  ════════════════════════════════ */
+  --text-primary:       var(--neutral-900);   /* #0c0c0c */
+  --text-secondary:     var(--neutral-700);   /* #322a2a — extracted: --base-font-color */
+  --text-tertiary:      var(--neutral-500);   /* #75757a — extracted: --border-color */
+  --text-disabled:      var(--neutral-400);   /* #b4b2b1 */
+  --text-inverse:       var(--neutral-100);   /* #f1ebe5 */
+  --text-brand:         var(--color-primary); /* #c22521 — extracted: --logo-color */
+  --text-brand-hover:   var(--color-primary-hover);
+  --text-on-fill:       #ffffff;
+  --text-on-fill-subtle:rgba(255,255,255,0.6);
+  --text-success:       var(--accent-success);
+  --text-warning:       var(--accent-warning);
+  --text-error:         var(--accent-error);
+  --text-info:          var(--accent-info);
+
+  /* ════════════════════════════════
+     SEMANTIC — BACKGROUND
+  ════════════════════════════════ */
+  --bg-page:           var(--neutral-50);    /* #FAF6F4 — body background */
+  --bg-subtle:         var(--neutral-100);   /* #f1ebe5 — extracted: --primarynav-bg */
+  --bg-muted:          var(--neutral-200);   /* #e6dcd5 — extracted: --footer-bg */
+  --bg-overlay:        rgba(12,12,12,0.5);
+  --bg-overlay-light:  rgba(12,12,12,0.2);
+  --bg-inverse:        var(--neutral-900);   /* #0c0c0c */
+  --bg-brand:          var(--color-primary); /* extracted: --primarynav-actions-bg */
+  --bg-brand-subtle:   #faf0ef;
+  --bg-success-subtle: #f0fdf4;
+  --bg-warning-subtle: #fffbeb;
+  --bg-error-subtle:   #fef2f2;
+  --bg-info-subtle:    #eff6ff;
+
+  /* ════════════════════════════════
+     SEMANTIC — SURFACE
+  ════════════════════════════════ */
+  --surface-base:          #ffffff;         /* extracted: --header-bg */
+  --surface-raised:        #ffffff;
+  --surface-overlay:       #ffffff;
+  --surface-sunken:        var(--neutral-100);  /* #f1ebe5 */
+  --surface-brand:         #faf0ef;
+  --surface-brand-bold:    var(--color-primary);
+  --surface-inverse:       var(--neutral-800);  /* #1a1a1a */
+  --surface-disabled:      var(--neutral-100);
+  --surface-hover:         var(--neutral-50);
+  --surface-selected:      #faf0ef;
+  --surface-selected-bold: #f5e0de;
+
+  /* ════════════════════════════════
+     SHADOW
+  ════════════════════════════════ */
+  --shadow-sm:      0 1px 2px rgba(0,0,0,0.08);
+  --shadow-md:      0 4px 8px rgba(0,0,0,0.10);
+  --shadow-lg:      0 8px 24px rgba(0,0,0,0.12);
+  --shadow-brand:   0 4px 12px rgba(194,37,33,0.35);
+
+  /* ════════════════════════════════
+     BUTTONS
+     Extracted directly from CIO.com CSS vars
+  ════════════════════════════════ */
+  --btn-bg:           var(--color-primary);        /* extracted: --btn-bg */
+  --btn-bg-hover:     var(--color-secondary);       /* extracted: --btn-bg-hover (#0c0c0c!) */
+  --btn-color:        #ffffff;                       /* extracted: --btn-color */
+  --btn-border:       1px solid var(--color-primary);/* extracted: --btn-border */
+  --btn-border-hover: 1px solid var(--color-secondary);
+  --btn-br:           var(--radius-none);            /* extracted: --btn-br = 0 */
+  --btn-ff:           var(--font-mono);              /* extracted: --btn-ff */
+  --btn-fw:           500;                           /* extracted: --btn-fw */
+  --btn-ls:           0.1em;                         /* extracted: --btn-ls */
+  --btn-style:        italic;                        /* extracted: --btn-ts */
+  --btn-tt:           uppercase;                     /* extracted: --btn-tt */
+
+  /* Button sizes */
+  --btn-sm-height:   32px; --btn-sm-padding-h:  14px; --btn-sm-font-size:  11px;
+  --btn-height:      40px; --btn-padding-h:     20px; --btn-font-size:     12px;
+  --btn-lg-height:   48px; --btn-lg-padding-h:  24px; --btn-lg-font-size:  14px;
+
+  /* ════════════════════════════════
+     ICONS
+  ════════════════════════════════ */
+  --icon-xs:  12px;
+  --icon-sm:  16px;
+  --icon-md:  20px;   /* component default */
+  --icon-lg:  24px;
+  --icon-xl:  32px;
+  --icon-2xl: 48px;
+
+  --icon-default:  var(--text-primary);
+  --icon-subtle:   var(--text-tertiary);
+  --icon-brand:    var(--text-brand);
+  --icon-on-fill:  var(--text-on-fill);
+  --icon-disabled: var(--text-disabled);
+  --icon-success:  var(--text-success);
+  --icon-warning:  var(--text-warning);
+  --icon-error:    var(--text-error);
+  --icon-info:     var(--text-info);
+}

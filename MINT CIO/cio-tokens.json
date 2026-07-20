@@ -1,0 +1,212 @@
+{
+  "$metadata": {
+    "source": "https://www.cio.com/",
+    "extractedDate": "2026-06-23",
+    "method": "Live Chrome JS injection — 470 CSS variables captured",
+    "notes": "Web-safe font equivalents used: Playfair Display (regis), Inter (graphik), JetBrains Mono (attribute-mono). Key brand signatures: CIO Crimson #c22521, warm cream backgrounds, square corners (radius: 0), italic monospace button labels."
+  },
+
+  "color": {
+    "primary":       { "$type": "color", "$value": "#c22521", "$description": "CIO Crimson — --color-primary-hex" },
+    "primaryHover":  { "$type": "color", "$value": "#ab1a16", "$description": "--menuaside-scroll-thumb-hover" },
+    "primaryActive": { "$type": "color", "$value": "#8c1513", "$description": "--subscribe-btn-hover-color" },
+    "secondary":     { "$type": "color", "$value": "#0c0c0c", "$description": "--btn-bg-hover / --footer-color" },
+    "tertiary":      { "$type": "color", "$value": "#f1ebe5", "$description": "--primarynav-bg / --menuaside-bg" }
+  },
+
+  "neutral": {
+    "50":  { "$type": "color", "$value": "#FAF6F4", "$description": "body background (computed)" },
+    "100": { "$type": "color", "$value": "#F1EBE5", "$description": "--primarynav-bg" },
+    "200": { "$type": "color", "$value": "#E6DCD5", "$description": "--footer-bg" },
+    "300": { "$type": "color", "$value": "#D4C8C1" },
+    "400": { "$type": "color", "$value": "#B4B2B1", "$description": "--trendingbar-link-hover-color" },
+    "500": { "$type": "color", "$value": "#75757A", "$description": "--border-color" },
+    "600": { "$type": "color", "$value": "#4D4D4D", "$description": "--footer-link-color" },
+    "700": { "$type": "color", "$value": "#322A2A", "$description": "--base-font-color" },
+    "800": { "$type": "color", "$value": "#1A1A1A", "$description": "--body-color" },
+    "900": { "$type": "color", "$value": "#0C0C0C", "$description": "--footer-color / --btn-bg-hover" }
+  },
+
+  "accent": {
+    "success": { "$type": "color", "$value": "#21873A", "$description": "--deal-collection-deal--view-button--background-color" },
+    "warning": { "$type": "color", "$value": "#D97706" },
+    "error":   { "$type": "color", "$value": "#c22521", "$description": "Same as primary (CIO pattern)" },
+    "info":    { "$type": "color", "$value": "#1a4ce3",  "$description": "--miso-banner-color" }
+  },
+
+  "text": {
+    "primary":        { "$type": "color", "$value": "{neutral.900}",   "$description": "Headlines, body" },
+    "secondary":      { "$type": "color", "$value": "{neutral.700}",   "$description": "Bylines, supporting" },
+    "tertiary":       { "$type": "color", "$value": "{neutral.500}",   "$description": "Timestamps, captions" },
+    "disabled":       { "$type": "color", "$value": "{neutral.400}",   "$description": "Disabled labels" },
+    "inverse":        { "$type": "color", "$value": "{neutral.100}",   "$description": "Text on dark bg" },
+    "brand":          { "$type": "color", "$value": "{color.primary}", "$description": "Links, active nav" },
+    "brandHover":     { "$type": "color", "$value": "{color.primaryHover}" },
+    "onFill":         { "$type": "color", "$value": "#ffffff",          "$description": "Label on filled button" },
+    "onFillSubtle":   { "$type": "color", "$value": "rgba(255,255,255,0.6)" },
+    "success":        { "$type": "color", "$value": "{accent.success}" },
+    "warning":        { "$type": "color", "$value": "{accent.warning}" },
+    "error":          { "$type": "color", "$value": "{accent.error}" },
+    "info":           { "$type": "color", "$value": "{accent.info}" }
+  },
+
+  "bg": {
+    "page":          { "$type": "color", "$value": "{neutral.50}",     "$description": "Root canvas — warm off-white" },
+    "subtle":        { "$type": "color", "$value": "{neutral.100}",    "$description": "Nav, aside, section bands" },
+    "muted":         { "$type": "color", "$value": "{neutral.200}",    "$description": "Footer, divider bands" },
+    "overlay":       { "$type": "color", "$value": "rgba(12,12,12,0.5)" },
+    "overlayLight":  { "$type": "color", "$value": "rgba(12,12,12,0.2)" },
+    "inverse":       { "$type": "color", "$value": "{neutral.900}",    "$description": "Dark hero, sidebar" },
+    "brand":         { "$type": "color", "$value": "{color.primary}",  "$description": "CTA strips, nav action bar" },
+    "brandSubtle":   { "$type": "color", "$value": "#faf0ef" },
+    "successSubtle": { "$type": "color", "$value": "#f0fdf4" },
+    "warningSubtle": { "$type": "color", "$value": "#fffbeb" },
+    "errorSubtle":   { "$type": "color", "$value": "#fef2f2" },
+    "infoSubtle":    { "$type": "color", "$value": "#eff6ff" }
+  },
+
+  "surface": {
+    "base":         { "$type": "color", "$value": "#ffffff",           "$description": "Elevation 0 — cards, inputs" },
+    "raised":       { "$type": "color", "$value": "#ffffff",           "$description": "Elevation +1 — dropdowns" },
+    "overlay":      { "$type": "color", "$value": "#ffffff",           "$description": "Elevation +2 — modals" },
+    "sunken":       { "$type": "color", "$value": "{neutral.100}",     "$description": "Code blocks, read-only" },
+    "brand":        { "$type": "color", "$value": "#faf0ef" },
+    "brandBold":    { "$type": "color", "$value": "{color.primary}" },
+    "inverse":      { "$type": "color", "$value": "{neutral.800}" },
+    "disabled":     { "$type": "color", "$value": "{neutral.100}" },
+    "hover":        { "$type": "color", "$value": "{neutral.50}" },
+    "selected":     { "$type": "color", "$value": "#faf0ef" },
+    "selectedBold": { "$type": "color", "$value": "#f5e0de" }
+  },
+
+  "space": {
+    "0":  { "$type": "dimension", "$value": "0px" },
+    "1":  { "$type": "dimension", "$value": "4px" },
+    "2":  { "$type": "dimension", "$value": "8px" },
+    "3":  { "$type": "dimension", "$value": "12px" },
+    "4":  { "$type": "dimension", "$value": "16px" },
+    "5":  { "$type": "dimension", "$value": "20px" },
+    "6":  { "$type": "dimension", "$value": "24px" },
+    "8":  { "$type": "dimension", "$value": "32px" },
+    "10": { "$type": "dimension", "$value": "40px" },
+    "12": { "$type": "dimension", "$value": "48px" },
+    "16": { "$type": "dimension", "$value": "64px" },
+    "20": { "$type": "dimension", "$value": "80px" },
+    "24": { "$type": "dimension", "$value": "96px" },
+    "32": { "$type": "dimension", "$value": "128px" }
+  },
+
+  "radius": {
+    "none": { "$type": "dimension", "$value": "0px",    "$description": "CIO default — square components (--btn-br)" },
+    "xs":   { "$type": "dimension", "$value": "2px" },
+    "sm":   { "$type": "dimension", "$value": "4px" },
+    "full": { "$type": "dimension", "$value": "9999px", "$description": "Search box (--miso-search-box-border-radius)" }
+  },
+
+  "stroke": {
+    "none": { "$type": "dimension", "$value": "0px" },
+    "xs":   { "$type": "dimension", "$value": "0.5px" },
+    "sm":   { "$type": "dimension", "$value": "1px",   "$description": "Default border width" },
+    "md":   { "$type": "dimension", "$value": "1.5px" },
+    "lg":   { "$type": "dimension", "$value": "2px" },
+    "xl":   { "$type": "dimension", "$value": "3px" }
+  },
+
+  "type": {
+    "display": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Playfair Display, serif",
+        "fontSize": "60px", "fontWeight": 400,
+        "lineHeight": 1.05, "letterSpacing": "-0.04em", "fontStyle": "italic"
+      },
+      "$description": "CIO font: regis, serif (--heading-lg-ff)"
+    },
+    "h1": { "$type": "typography", "$value": { "fontFamily": "Playfair Display, serif", "fontSize": "40px", "fontWeight": 400, "lineHeight": 1.15, "letterSpacing": "-0.04em" } },
+    "h2": { "$type": "typography", "$value": { "fontFamily": "Playfair Display, serif", "fontSize": "32px", "fontWeight": 400, "lineHeight": 1.2,  "letterSpacing": "-0.04em" } },
+    "h3": { "$type": "typography", "$value": { "fontFamily": "Inter, sans-serif",        "fontSize": "24px", "fontWeight": 600, "lineHeight": 1.25, "letterSpacing": "-0.03em" } },
+    "h4": { "$type": "typography", "$value": { "fontFamily": "Inter, sans-serif",        "fontSize": "20px", "fontWeight": 600, "lineHeight": 1.3,  "letterSpacing": "-0.03em" } },
+    "h5": { "$type": "typography", "$value": { "fontFamily": "Inter, sans-serif",        "fontSize": "18px", "fontWeight": 600, "lineHeight": 1.35, "letterSpacing": "-0.02em" } },
+    "h6": { "$type": "typography", "$value": { "fontFamily": "Inter, sans-serif",        "fontSize": "16px", "fontWeight": 600, "lineHeight": 1.4,  "letterSpacing": "-0.02em" } },
+    "bodyLg": {
+      "$type": "typography",
+      "$value": { "fontFamily": "Inter, sans-serif", "fontSize": "18px", "fontWeight": 400, "lineHeight": 1.563, "letterSpacing": "-0.01em" },
+      "$description": "--body-lh: 1.563, --body-ls: -0.01em"
+    },
+    "bodyMd": { "$type": "typography", "$value": { "fontFamily": "Inter, sans-serif", "fontSize": "16px", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": "-0.01em" } },
+    "bodySm": { "$type": "typography", "$value": { "fontFamily": "Inter, sans-serif", "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": "-0.01em" } },
+    "label": {
+      "$type": "typography",
+      "$value": { "fontFamily": "JetBrains Mono, monospace", "fontSize": "12px", "fontWeight": 500, "lineHeight": 1.2, "letterSpacing": "0.1em", "fontStyle": "italic", "textTransform": "uppercase" },
+      "$description": "CIO font: attribute-mono. --btn-fw:500, --btn-ls:0.1em, --btn-ts:italic, --btn-tt:uppercase"
+    },
+    "caption": { "$type": "typography", "$value": { "fontFamily": "Inter, sans-serif", "fontSize": "12px", "fontWeight": 400, "lineHeight": 1.4, "letterSpacing": "-0.01em" } },
+    "code":    { "$type": "typography", "$value": { "fontFamily": "JetBrains Mono, monospace", "fontSize": "14px", "fontWeight": 400, "lineHeight": 1.6 } }
+  },
+
+  "btn": {
+    "$description": "Extracted directly from CIO.com CSS vars",
+    "size": {
+      "sm":      { "height": { "$type": "dimension", "$value": "32px" }, "paddingH": { "$type": "dimension", "$value": "14px" }, "fontSize": { "$type": "dimension", "$value": "11px" } },
+      "default": { "height": { "$type": "dimension", "$value": "40px" }, "paddingH": { "$type": "dimension", "$value": "20px" }, "fontSize": { "$type": "dimension", "$value": "12px" } },
+      "lg":      { "height": { "$type": "dimension", "$value": "48px" }, "paddingH": { "$type": "dimension", "$value": "24px" }, "fontSize": { "$type": "dimension", "$value": "14px" } }
+    },
+    "primary": {
+      "bg":           { "$type": "color", "$value": "{color.primary}",      "$description": "--btn-bg" },
+      "bgHover":      { "$type": "color", "$value": "{color.secondary}",    "$description": "--btn-bg-hover (#0c0c0c — unique CIO pattern)" },
+      "bgActive":     { "$type": "color", "$value": "{color.primaryActive}" },
+      "bgDisabled":   { "$type": "color", "$value": "rgba(194,37,33,0.4)" },
+      "label":        { "$type": "color", "$value": "#ffffff",               "$description": "--btn-color" },
+      "border":       { "$type": "color", "$value": "{color.primary}",       "$description": "--btn-border" },
+      "borderHover":  { "$type": "color", "$value": "{color.secondary}",     "$description": "--btn-border-hover" },
+      "radius":       { "$type": "dimension", "$value": "{radius.none}",     "$description": "--btn-br: 0" },
+      "fontFamily":   { "$type": "fontFamily", "$value": "JetBrains Mono, monospace", "$description": "--btn-ff: attribute-mono" },
+      "fontWeight":   { "$type": "number", "$value": 500,                    "$description": "--btn-fw" },
+      "fontStyle":    { "$type": "other", "$value": "italic",                "$description": "--btn-ts" },
+      "textTransform":{ "$type": "other", "$value": "uppercase",             "$description": "--btn-tt" },
+      "letterSpacing":{ "$type": "dimension", "$value": "0.1em",             "$description": "--btn-ls" }
+    },
+    "secondary": {
+      "bg":          { "$type": "color", "$value": "transparent" },
+      "bgHover":     { "$type": "color", "$value": "#faf0ef" },
+      "label":       { "$type": "color", "$value": "{color.primary}" },
+      "border":      { "$type": "color", "$value": "{color.primary}" },
+      "radius":      { "$type": "dimension", "$value": "{radius.none}" }
+    },
+    "tertiary": {
+      "bg":      { "$type": "color", "$value": "{neutral.100}" },
+      "bgHover": { "$type": "color", "$value": "{neutral.200}" },
+      "label":   { "$type": "color", "$value": "{color.primary}" },
+      "radius":  { "$type": "dimension", "$value": "{radius.none}" }
+    }
+  },
+
+  "icon": {
+    "size": {
+      "xs":  { "$type": "dimension", "$value": "12px" },
+      "sm":  { "$type": "dimension", "$value": "16px" },
+      "md":  { "$type": "dimension", "$value": "20px", "$description": "component default" },
+      "lg":  { "$type": "dimension", "$value": "24px" },
+      "xl":  { "$type": "dimension", "$value": "32px" },
+      "2xl": { "$type": "dimension", "$value": "48px" }
+    },
+    "color": {
+      "default":  { "$type": "color", "$value": "{text.primary}" },
+      "subtle":   { "$type": "color", "$value": "{text.tertiary}" },
+      "brand":    { "$type": "color", "$value": "{text.brand}" },
+      "onFill":   { "$type": "color", "$value": "{text.onFill}" },
+      "disabled": { "$type": "color", "$value": "{text.disabled}" },
+      "success":  { "$type": "color", "$value": "{text.success}" },
+      "warning":  { "$type": "color", "$value": "{text.warning}" },
+      "error":    { "$type": "color", "$value": "{text.error}" },
+      "info":     { "$type": "color", "$value": "{text.info}" }
+    }
+  },
+
+  "shadow": {
+    "sm":    { "$type": "shadow", "$value": { "offsetX": "0", "offsetY": "1px", "blur": "2px",  "color": "rgba(0,0,0,0.08)" } },
+    "md":    { "$type": "shadow", "$value": { "offsetX": "0", "offsetY": "4px", "blur": "8px",  "color": "rgba(0,0,0,0.10)" } },
+    "lg":    { "$type": "shadow", "$value": { "offsetX": "0", "offsetY": "8px", "blur": "24px", "color": "rgba(0,0,0,0.12)" } },
+    "brand": { "$type": "shadow", "$value": { "offsetX": "0", "offsetY": "4px", "blur": "12px", "color": "rgba(194,37,33,0.35)" } }
+  }
+}

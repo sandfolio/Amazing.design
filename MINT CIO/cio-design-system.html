@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CIO Design System — Style Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"/>
+<style>
+/* ─── Reset ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#FAF6F4;color:#0c0c0c;line-height:1.6}
+
+/* ─── CSS Tokens (extracted from CIO.com) ─── */
+:root{
+  /* Brand */
+  --color-primary:#c22521;
+  --color-primary-hover:#ab1a16;
+  --color-primary-active:#8c1513;
+  --color-secondary:#0c0c0c;
+  --color-tertiary:#f1ebe5;
+
+  /* Neutral Scale (warm-tinted) */
+  --neutral-50:#FAF6F4;
+  --neutral-100:#F1EBE5;
+  --neutral-200:#E6DCD5;
+  --neutral-300:#D4C8C1;
+  --neutral-400:#B4B2B1;
+  --neutral-500:#75757A;
+  --neutral-600:#4D4D4D;
+  --neutral-700:#322A2A;
+  --neutral-800:#1A1A1A;
+  --neutral-900:#0C0C0C;
+
+  /* Accent */
+  --accent-success:#21873A;
+  --accent-warning:#D97706;
+  --accent-error:#c22521;
+  --accent-info:#1a4ce3;
+
+  /* Typography */
+  --font-editorial:'Playfair Display',serif;
+  --font-ui:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+
+  /* Spacing (base 4px) */
+  --space-0:0px; --space-1:4px; --space-2:8px; --space-3:12px;
+  --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px;
+  --space-10:40px; --space-12:48px; --space-16:64px; --space-20:80px;
+  --space-24:96px; --space-32:128px;
+
+  /* Radius — CIO uses sharp/square design */
+  --radius-none:0px; --radius-xs:2px; --radius-sm:4px; --radius-md:0px;
+  --radius-lg:0px; --radius-xl:0px; --radius-full:9999px;
+
+  /* Stroke */
+  --stroke-none:0px; --stroke-xs:0.5px; --stroke-sm:1px;
+  --stroke-md:1.5px; --stroke-lg:2px; --stroke-xl:3px;
+}
+
+/* ─── Layout ─── */
+.layout{display:flex;min-height:100vh}
+.sidebar{width:240px;background:#0c0c0c;color:#f1ebe5;padding:28px 20px;position:sticky;top:0;height:100vh;overflow-y:auto;flex-shrink:0}
+.main{flex:1;padding:48px;max-width:980px}
+
+/* ─── Sidebar ─── */
+.sidebar-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#c22521;letter-spacing:-0.04em;margin-bottom:4px}
+.sidebar-version{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#75757a;margin-bottom:28px}
+.sidebar-section{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#4d4d4d;margin:20px 0 6px}
+.sidebar nav a{display:block;padding:7px 10px;color:#b4b2b1;text-decoration:none;font-size:13px;margin-bottom:1px;border-left:2px solid transparent;transition:all .15s}
+.sidebar nav a:hover{color:#f1ebe5;border-left-color:#c22521}
+.sidebar nav a.active{color:#fff;border-left-color:#c22521;background:rgba(194,37,33,.12)}
+
+/* ─── Section ─── */
+.section{margin-bottom:64px}
+.section-tag{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#c22521;margin-bottom:8px}
+.section-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:400;letter-spacing:-0.04em;color:#0c0c0c;margin-bottom:8px}
+.section-desc{font-size:15px;color:#4d4d4d;max-width:560px;line-height:1.6}
+.divider{height:1px;background:#e6dcd5;margin:32px 0}
+.group-label{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#75757a;margin:24px 0 12px}
+
+/* ─── Hero ─── */
+.hero{background:#0c0c0c;border-radius:0;padding:48px;margin-bottom:48px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:#c22521}
+.hero h1{font-family:'Playfair Display',serif;font-size:42px;font-weight:400;letter-spacing:-0.04em;color:#f1ebe5;margin-bottom:8px;font-style:italic}
+.hero p{color:#75757a;font-size:15px;max-width:520px}
+.hero-badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#c22521;margin-bottom:16px}
+
+/* ─── Color Cards ─── */
+.color-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.color-card{width:140px;border:1px solid #e6dcd5;background:#fff}
+.color-swatch{height:80px}
+.color-info{padding:10px 12px}
+.color-name{font-size:13px;font-weight:600;color:#0c0c0c}
+.color-hex{font-family:'JetBrains Mono',monospace;font-size:11px;color:#75757a}
+.color-var{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b4b2b1;margin-top:2px}
+
+/* ─── Neutral Scale ─── */
+.neutral-scale{display:flex;border:1px solid #e6dcd5;overflow:hidden;margin-bottom:16px}
+.neutral-swatch{flex:1;height:64px;display:flex;align-items:flex-end;padding:5px 6px}
+.neutral-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600}
+
+/* ─── Type Families ─── */
+.type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.type-card{border:1px solid #e6dcd5;background:#fff}
+.type-card-header{padding:24px 20px;background:#f1ebe5;border-bottom:1px solid #e6dcd5;min-height:120px;display:flex;flex-direction:column;justify-content:space-between}
+.type-role-tag{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;background:#c22521;color:#fff;align-self:flex-start}
+.type-specimen{font-size:36px;color:#0c0c0c;margin-top:8px}
+.type-card-body{padding:14px 16px}
+.type-family-name{font-size:14px;font-weight:700;color:#0c0c0c}
+.type-family-role{font-size:11px;color:#75757a;margin-top:2px;margin-bottom:10px}
+.weight-chips{display:flex;flex-wrap:wrap;gap:5px}
+.weight-chip{font-size:11px;padding:3px 8px;background:#f1ebe5;color:#322a2a;border:1px solid #e6dcd5}
+
+/* ─── Type Scale ─── */
+.scale-table{display:flex;flex-direction:column}
+.scale-row{display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid #f1ebe5}
+.scale-meta{width:130px;flex-shrink:0}
+.scale-token{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#c22521;background:#faf0ef;padding:2px 6px;width:fit-content;margin-bottom:3px}
+.scale-size-info{font-size:10px;color:#b4b2b1}
+.scale-sample{color:#0c0c0c;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:600px}
+
+/* ─── Token Export Blocks ─── */
+.export-block{border:1px solid #e6dcd5;margin-bottom:16px;overflow:hidden}
+.export-header{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;background:#f1ebe5;border-bottom:1px solid #e6dcd5;font-size:11px;font-weight:600;color:#322a2a;font-family:'JetBrains Mono',monospace}
+.export-lang{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c22521}
+.export-code{margin:0;padding:18px;background:#0c0c0c;overflow-x:auto}
+.export-code code{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.7;color:#e6dcd5;white-space:pre}
+
+/* ─── Token Tables ─── */
+.token-table{width:100%;border-collapse:collapse;font-size:12px}
+.token-table th{text-align:left;padding:8px 12px;background:#f1ebe5;color:#322a2a;font-weight:600;border-bottom:1px solid #e6dcd5}
+.token-table td{padding:8px 12px;border-bottom:1px solid #faf6f4;color:#322a2a}
+.token-table code{font-family:'JetBrains Mono',monospace;font-size:11px;background:#faf0ef;color:#c22521;padding:2px 5px}
+
+/* ─── Spacing ─── */
+.spacing-rows{display:flex;flex-direction:column;gap:8px}
+.spacing-row{display:flex;align-items:center;gap:16px}
+.spacing-meta{width:160px;flex-shrink:0;display:flex;align-items:center;gap:8px}
+.spacing-bar{height:18px;background:#c22521;min-width:2px}
+.spacing-val{font-size:11px;color:#75757a;font-family:'JetBrains Mono',monospace}
+
+/* ─── Stroke / Radius ─── */
+.stroke-grid,.radius-grid{display:flex;flex-wrap:wrap;gap:10px}
+.stroke-card,.radius-card{width:120px;background:#fff;border:1px solid #e6dcd5;padding:12px}
+.stroke-preview{width:100%;height:40px;background:#f1ebe5;margin-bottom:8px;display:flex;align-items:center;justify-content:center}
+.radius-preview{width:100%;height:52px;background:#faf0ef;border:2px solid #c2252140;margin-bottom:8px}
+
+/* ─── Semantic tokens ─── */
+.sem-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.sem-card{background:#fff;border:1px solid #e6dcd5;overflow:hidden}
+.sem-swatch{height:48px;width:100%}
+.sem-body{padding:9px 11px}
+.sem-ref{font-family:'JetBrains Mono',monospace;font-size:9px;color:#b4b2b1;margin-bottom:2px}
+.sem-val{font-family:'JetBrains Mono',monospace;font-size:10px;color:#322a2a;font-weight:600;margin-bottom:3px}
+.sem-use{font-size:10px;color:#75757a;line-height:1.4}
+
+/* ─── Buttons ─── */
+.btn-variant-block{background:#fff;border:1px solid #e6dcd5;padding:24px;margin-bottom:16px}
+.btn-variant-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.btn-variant-badge{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px}
+.btn-variant-title{font-size:16px;font-weight:700;color:#0c0c0c}
+.btn-variant-desc{font-size:13px;color:#75757a;width:100%;margin-top:-4px}
+.btn-states-strip{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;padding:14px 0;border-bottom:1px solid #e6dcd5;margin-bottom:14px}
+.btn-state-col{display:flex;flex-direction:column;align-items:center;gap:7px}
+.btn-state-tag{font-size:9px;color:#b4b2b1;font-family:'JetBrains Mono',monospace;letter-spacing:0.05em}
+
+/* CIO Button Base — sharp, italic monospace */
+button.cio-btn{border:none;cursor:default;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-family:'JetBrains Mono',monospace;font-weight:500;font-style:italic;text-transform:uppercase;letter-spacing:0.1em;line-height:1;white-space:nowrap}
+
+/* Sizes */
+.cio-btn.sz-default{height:40px;padding:0 20px;font-size:12px}
+.cio-btn.sz-sm{height:32px;padding:0 14px;font-size:11px}
+.cio-btn.sz-lg{height:48px;padding:0 24px;font-size:14px}
+
+/* Primary */
+.cio-btn.v-primary.s-default{background:#c22521;color:#fff;border:1px solid #c22521}
+.cio-btn.v-primary.s-hover{background:#ab1a16;color:#fff;border:1px solid #ab1a16}
+.cio-btn.v-primary.s-active{background:#8c1513;color:#fff;border:1px solid #8c1513}
+.cio-btn.v-primary.s-disabled{background:#c2252166;color:rgba(255,255,255,.5);border:1px solid #c2252166;cursor:not-allowed}
+
+/* Secondary */
+.cio-btn.v-secondary.s-default{background:transparent;color:#c22521;border:1px solid #c22521}
+.cio-btn.v-secondary.s-hover{background:#faf0ef;color:#ab1a16;border:1px solid #ab1a16}
+.cio-btn.v-secondary.s-active{background:#f5e0de;color:#8c1513;border:1px solid #8c1513}
+.cio-btn.v-secondary.s-disabled{background:transparent;color:#c2252166;border:1px solid #c2252140;cursor:not-allowed}
+
+/* Tertiary */
+.cio-btn.v-tertiary.s-default{background:#f1ebe5;color:#c22521;border:1px solid transparent}
+.cio-btn.v-tertiary.s-hover{background:#e6dcd5;color:#ab1a16;border:1px solid transparent}
+.cio-btn.v-tertiary.s-active{background:#d4c8c1;color:#8c1513;border:1px solid transparent}
+.cio-btn.v-tertiary.s-disabled{background:#f1ebe5;color:#c2252166;cursor:not-allowed}
+
+/* Text */
+.cio-btn.v-text.s-default{background:transparent;color:#c22521;padding-left:6px;padding-right:6px}
+.cio-btn.v-text.s-hover{background:#faf0ef;color:#ab1a16}
+.cio-btn.v-text.s-disabled{background:transparent;color:#c2252166;cursor:not-allowed}
+
+/* Link */
+.cio-btn.v-link{background:transparent;font-style:normal;text-transform:none;letter-spacing:0;text-decoration:underline;text-underline-offset:3px;padding:0}
+.cio-btn.v-link.s-default{color:#c22521;text-decoration-color:#c2252166}
+.cio-btn.v-link.s-hover{color:#ab1a16;text-decoration-color:#ab1a16}
+.cio-btn.v-link.s-disabled{color:#c2252166;cursor:not-allowed}
+
+/* ─── Icons ─── */
+.icon-size-strip{display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap;padding:16px 0}
+.icon-size-demo{display:flex;flex-direction:column;align-items:center;gap:7px}
+.icon-color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.icon-color-card{background:#fff;border:1px solid #e6dcd5;padding:12px;text-align:center}
+.icon-color-preview{height:28px;display:flex;align-items:center;justify-content:center;margin-bottom:6px;font-size:22px}
+.icon-catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px;margin-bottom:14px}
+.icon-item{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#fff;border:1px solid #e6dcd5;transition:background .12s,border-color .12s}
+.icon-item:hover{background:#faf0ef;border-color:#c22521}
+.icon-item i{font-size:20px;color:#0c0c0c}
+.icon-item span{font-family:'JetBrains Mono',monospace;font-size:9px;color:#75757a;text-align:center;line-height:1.3}
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rule-card{padding:18px}
+.rule-do{background:#f0fdf4;border:1px solid #bbf7d0}
+.rule-dont{background:#fef2f2;border:1px solid #fecaca}
+.rule-header{font-size:12px;font-weight:700;margin-bottom:10px}
+.rule-do .rule-header{color:#15803d}
+.rule-dont .rule-header{color:#dc2626}
+.rule-list{padding-left:14px;display:flex;flex-direction:column;gap:5px}
+.rule-list li{font-size:12px;color:#374151;line-height:1.5}
+.rule-list code{font-family:'JetBrains Mono',monospace;font-size:10px;background:rgba(0,0,0,.06);padding:1px 4px}
+
+/* ─── Layer diagram ─── */
+.layer-diagram{display:flex;align-items:center;gap:8px;padding:14px 16px;background:#f1ebe5;flex-wrap:wrap;margin:16px 0}
+.layer-chip{padding:5px 12px;font-size:12px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.layer-chip span{display:block;font-size:9px;font-weight:400;opacity:.7;margin-top:1px}
+.layer-prim{background:#e6dcd5;color:#322a2a}
+.layer-sem{background:#c22521;color:#fff}
+.layer-comp{background:#0c0c0c;color:#f1ebe5}
+.layer-arrow{font-size:14px;color:#b4b2b1}
+
+/* ─── Step badge ─── */
+.step-badge{display:inline-flex;align-items:center;gap:6px;background:#faf0ef;color:#c22521;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.08em;padding:4px 10px;margin-bottom:24px;border:1px solid #c2252120}
+.token-cat-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px;margin-top:8px}
+.token-cat-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.token-cat-title{font-size:15px;font-weight:700;color:#0c0c0c;margin-bottom:2px}
+.token-cat-desc{font-size:12px;color:#75757a}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">CIO DS</div>
+  <div class="sidebar-version">v1.0 · cio.com</div>
+  <div class="sidebar-section">Foundation</div>
+  <nav>
+    <a href="#colors" class="active">Color System</a>
+    <a href="#typography">Typography</a>
+    <a href="#type-tokens">Type Tokens</a>
+    <a href="#spacing">Spacing & Radius</a>
+  </nav>
+  <div class="sidebar-section">Components</div>
+  <nav>
+    <a href="#buttons">CTA Buttons</a>
+  </nav>
+  <div class="sidebar-section">Tokens</div>
+  <nav>
+    <a href="#semantic">Semantic Colors</a>
+    <a href="#iconography">Iconography</a>
+    <a href="#exports">Token Exports</a>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-badge">✦ CIO Design System — Extracted from cio.com</div>
+  <h1>The Voice of IT Leadership</h1>
+  <p>A bold editorial design system combining authoritative serif typography, clean sans-serif UI, and a crimson brand accent — built on warm cream foundations with square, angular components.</p>
+</div>
+<div class="step-badge">✦ Extracted · 470 live CSS variables · June 2026</div>
+
+<!-- ══ COLORS ══ -->
+<section class="section" id="colors">
+  <div class="section-tag">Color System</div>
+  <div class="section-title">Brand Palette</div>
+  <div class="section-desc">Three brand colors extracted from CIO.com's live CSS variables: a bold crimson primary, near-black secondary, and warm cream tertiary — built on an earthy warm-neutral scale.</div>
+  <div class="divider"></div>
+
+  <div class="group-label">Brand Colors</div>
+  <div class="color-row">
+    <div class="color-card">
+      <div class="color-swatch" style="background:#c22521"></div>
+      <div class="color-info">
+        <div class="color-name">CIO Crimson</div>
+        <div class="color-hex">#c22521</div>
+        <div class="color-var">--color-primary</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#ab1a16"></div>
+      <div class="color-info">
+        <div class="color-name">Crimson Hover</div>
+        <div class="color-hex">#ab1a16</div>
+        <div class="color-var">--color-primary-hover</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#0c0c0c"></div>
+      <div class="color-info">
+        <div class="color-name">Near Black</div>
+        <div class="color-hex">#0c0c0c</div>
+        <div class="color-var">--color-secondary</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#f1ebe5;border-bottom:1px solid #e6dcd5"></div>
+      <div class="color-info">
+        <div class="color-name">Warm Cream</div>
+        <div class="color-hex">#f1ebe5</div>
+        <div class="color-var">--color-tertiary</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="group-label">Neutral Scale — Warm-Tinted</div>
+  <div class="neutral-scale">
+    <div class="neutral-swatch" style="background:#FAF6F4"><span class="neutral-label" style="color:#b4b2b1">50</span></div>
+    <div class="neutral-swatch" style="background:#F1EBE5"><span class="neutral-label" style="color:#75757a">100</span></div>
+    <div class="neutral-swatch" style="background:#E6DCD5"><span class="neutral-label" style="color:#75757a">200</span></div>
+    <div class="neutral-swatch" style="background:#D4C8C1"><span class="neutral-label" style="color:#75757a">300</span></div>
+    <div class="neutral-swatch" style="background:#B4B2B1"><span class="neutral-label" style="color:#fff">400</span></div>
+    <div class="neutral-swatch" style="background:#75757A"><span class="neutral-label" style="color:#fff">500</span></div>
+    <div class="neutral-swatch" style="background:#4D4D4D"><span class="neutral-label" style="color:#e6dcd5">600</span></div>
+    <div class="neutral-swatch" style="background:#322A2A"><span class="neutral-label" style="color:#e6dcd5">700</span></div>
+    <div class="neutral-swatch" style="background:#1A1A1A"><span class="neutral-label" style="color:#f1ebe5">800</span></div>
+    <div class="neutral-swatch" style="background:#0C0C0C"><span class="neutral-label" style="color:#f1ebe5">900</span></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="group-label">Accent Colors</div>
+  <div class="color-row">
+    <div class="color-card">
+      <div class="color-swatch" style="background:#21873A"></div>
+      <div class="color-info">
+        <div class="color-name">Success</div>
+        <div class="color-hex">#21873A</div>
+        <div class="color-var">--accent-success</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#D97706"></div>
+      <div class="color-info">
+        <div class="color-name">Warning</div>
+        <div class="color-hex">#D97706</div>
+        <div class="color-var">--accent-warning</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#c22521"></div>
+      <div class="color-info">
+        <div class="color-name">Error</div>
+        <div class="color-hex">#c22521</div>
+        <div class="color-var">--accent-error</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#1a4ce3"></div>
+      <div class="color-info">
+        <div class="color-name">Info</div>
+        <div class="color-hex">#1a4ce3</div>
+        <div class="color-var">--accent-info</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TYPOGRAPHY ══ -->
+<section class="section" id="typography">
+  <div class="section-tag">Typography</div>
+  <div class="section-title">Type System</div>
+  <div class="section-desc">Three typefaces: <strong>Playfair Display</strong> (maps to CIO's "regis" editorial serif), <strong>Inter</strong> (maps to "graphik" sans-serif UI), and <strong>JetBrains Mono</strong> (maps to "attribute-mono" for buttons and labels).</div>
+  <div class="divider"></div>
+
+  <div class="type-grid">
+    <!-- Editorial -->
+    <div class="type-card">
+      <div class="type-card-header">
+        <span class="type-role-tag">Editorial</span>
+        <div class="type-specimen" style="font-family:'Playfair Display',serif;font-weight:400;font-style:italic">Aa Bb Cc</div>
+      </div>
+      <div class="type-card-body">
+        <div class="type-family-name">Playfair Display</div>
+        <div class="type-family-role">Headings & Display (maps to "regis")</div>
+        <div class="weight-chips">
+          <span class="weight-chip" style="font-family:'Playfair Display';font-weight:400">Regular 400</span>
+          <span class="weight-chip" style="font-family:'Playfair Display';font-weight:700">Bold 700</span>
+          <span class="weight-chip" style="font-family:'Playfair Display';font-weight:400;font-style:italic">Italic 400</span>
+        </div>
+      </div>
+    </div>
+    <!-- UI -->
+    <div class="type-card">
+      <div class="type-card-header">
+        <span class="type-role-tag" style="background:#0c0c0c">UI Sans</span>
+        <div class="type-specimen" style="font-family:'Inter',sans-serif;font-weight:400">Aa Bb Cc</div>
+      </div>
+      <div class="type-card-body">
+        <div class="type-family-name">Inter</div>
+        <div class="type-family-role">Body & UI (maps to "graphik")</div>
+        <div class="weight-chips">
+          <span class="weight-chip" style="font-family:'Inter';font-weight:400">Regular 400</span>
+          <span class="weight-chip" style="font-family:'Inter';font-weight:500">Medium 500</span>
+          <span class="weight-chip" style="font-family:'Inter';font-weight:600">SemiBold 600</span>
+          <span class="weight-chip" style="font-family:'Inter';font-weight:700">Bold 700</span>
+        </div>
+      </div>
+    </div>
+    <!-- Mono -->
+    <div class="type-card">
+      <div class="type-card-header" style="background:#0c0c0c">
+        <span class="type-role-tag" style="background:#c22521">Mono</span>
+        <div class="type-specimen" style="font-family:'JetBrains Mono',monospace;font-weight:400;font-style:italic;color:#f1ebe5">01 {} =></div>
+      </div>
+      <div class="type-card-body">
+        <div class="type-family-name">JetBrains Mono</div>
+        <div class="type-family-role">Buttons, Labels, Code (maps to "attribute-mono")</div>
+        <div class="weight-chips">
+          <span class="weight-chip" style="font-family:'JetBrains Mono';font-weight:400;font-style:italic">Italic 400</span>
+          <span class="weight-chip" style="font-family:'JetBrains Mono';font-weight:500;font-style:italic">Italic 500</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="group-label">Type Scale</div>
+  <div class="scale-table">
+    <div class="scale-row">
+      <div class="scale-meta"><span class="scale-token">display</span><span class="scale-size-info">60px / 1.05 / -0.04em</span></div>
+      <div class="scale-sample" style="font-family:'Playfair Display',serif;font-size:48px;font-weight:400;letter-spacing:-0.04em;line-height:1.05;font-style:italic">The future of IT</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="scale-token">heading-h1</span><span class="scale-size-info">40px / 1.15 / -0.04em</span></div>
+      <div class="scale-sample" style="font-family:'Playfair Display',serif;font-size:40px;font-weight:400;letter-spacing:-0.04em;line-height:1.15">Digital Transformation</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="scale-token">heading-h2</span><span class="scale-size-info">32px / 1.2 / -0.04em</span></div>
+      <div class="scale-sample" style="font-family:'Playfair Display',serif;font-size:32px;font-weight:400;letter-spacing:-0.04em;line-height:1.2">Cloud Computing Strategy</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="scale-token">heading-h3</span><span class="scale-size-info">24px / 1.25 / -0.03em</span></div>
+      <div class="scale-sample" style="font-family:'Inter',sans-serif;font-size:24px;font-weight:600;letter-spacing:-0.03em;line-height:1.25">Artificial Intelligence Leaders</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="scale-token">heading-h4</span><span class="scale-size-info">20px / 1.3 / -0.03em</span></div>
+      <div class="scale-sample" style="font-family:'Inter',sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.03em;line-height:1.3">Enterprise Security Best Practices</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="scale-token">body-lg</span><span class="scale-size-info">18px / 1.563 / -0.01em</span></div>
+      <div class="scale-sample" style="font-family:'Inter',sans-serif;font-size:18px;font-weight:400;letter-spacing:-0.01em;line-height:1.563">IT leaders are navigating a rapidly evolving landscape of AI and cloud technologies.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="scale-token">body-md</span><span class="scale-size-info">16px / 1.5 / -0.01em</span></div>
+      <div class="scale-sample" style="font-family:'Inter',sans-serif;font-size:16px;font-weight:400;letter-spacing:-0.01em;line-height:1.5">Find the peer insights and expert advice IT leaders need to create business value.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="scale-token">label</span><span class="scale-size-info">11px / 1.2 / 0.1em</span></div>
+      <div class="scale-sample" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;font-style:italic;text-transform:uppercase;letter-spacing:0.1em;line-height:1.2">SUBSCRIBE NOW</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="scale-token">caption</span><span class="scale-size-info">12px / 1.4 / -0.01em</span></div>
+      <div class="scale-sample" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:400;letter-spacing:-0.01em;line-height:1.4;color:#75757a">Jun 22, 2026 · 8 min read · IT Leadership</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TYPE TOKENS ══ -->
+<section class="section" id="type-tokens">
+  <div class="section-tag">Design Tokens</div>
+  <div class="section-title">Typography Tokens</div>
+  <div class="section-desc">CSS custom properties and W3C DTCG JSON tokens for every type role — ready for Tokens Studio, Style Dictionary, or direct use.</div>
+  <div class="divider"></div>
+
+  <div class="export-block">
+    <div class="export-header"><span>typography.tokens.css</span><span class="export-lang">CSS</span></div>
+    <pre class="export-code"><code>:root {
+  /* ── Fonts ── */
+  --font-editorial: 'Playfair Display', serif;   /* CIO "regis" */
+  --font-ui:        'Inter', sans-serif;          /* CIO "graphik" */
+  --font-mono:      'JetBrains Mono', monospace; /* CIO "attribute-mono" */
+
+  /* ── Display / Hero ── */
+  --type-display-size:          60px;
+  --type-display-weight:        400;
+  --type-display-line-height:   1.05;
+  --type-display-letter-spacing:-0.04em;
+  --type-display-style:         italic;
+  --type-display-font:          var(--font-editorial);
+
+  /* ── Headings ── */
+  --type-h1-size:    40px; --type-h1-weight: 400; --type-h1-lh: 1.15; --type-h1-ls: -0.04em; --type-h1-font: var(--font-editorial);
+  --type-h2-size:    32px; --type-h2-weight: 400; --type-h2-lh: 1.2;  --type-h2-ls: -0.04em; --type-h2-font: var(--font-editorial);
+  --type-h3-size:    24px; --type-h3-weight: 600; --type-h3-lh: 1.25; --type-h3-ls: -0.03em; --type-h3-font: var(--font-ui);
+  --type-h4-size:    20px; --type-h4-weight: 600; --type-h4-lh: 1.3;  --type-h4-ls: -0.03em; --type-h4-font: var(--font-ui);
+  --type-h5-size:    18px; --type-h5-weight: 600; --type-h5-lh: 1.35; --type-h5-ls: -0.02em; --type-h5-font: var(--font-ui);
+  --type-h6-size:    16px; --type-h6-weight: 600; --type-h6-lh: 1.4;  --type-h6-ls: -0.02em; --type-h6-font: var(--font-ui);
+
+  /* ── Body ── */
+  --type-body-xl-size: 20px; --type-body-xl-weight: 400; --type-body-xl-lh: 1.6;    --type-body-xl-ls: -0.01em;
+  --type-body-lg-size: 18px; --type-body-lg-weight: 400; --type-body-lg-lh: 1.563;  --type-body-lg-ls: -0.01em;
+  --type-body-md-size: 16px; --type-body-md-weight: 400; --type-body-md-lh: 1.5;    --type-body-md-ls: -0.01em;
+  --type-body-sm-size: 14px; --type-body-sm-weight: 400; --type-body-sm-lh: 1.5;    --type-body-sm-ls: -0.01em;
+  --type-body-xs-size: 12px; --type-body-xs-weight: 400; --type-body-xs-lh: 1.4;    --type-body-xs-ls: -0.01em;
+  --type-body-font:    var(--font-ui);
+
+  /* ── Labels / Mono ── */
+  --type-label-size:   12px; --type-label-weight: 500; --type-label-lh: 1.2; --type-label-ls: 0.1em;
+  --type-label-tt:     uppercase; --type-label-style: italic; --type-label-font: var(--font-mono);
+  --type-caption-size: 12px; --type-caption-weight: 400; --type-caption-lh: 1.4; --type-caption-font: var(--font-ui);
+  --type-code-size:    14px; --type-code-weight: 400; --type-code-lh: 1.6; --type-code-font: var(--font-mono);
+}</code></pre>
+  </div>
+</section>
+
+<!-- ══ SPACING & RADIUS ══ -->
+<section class="section" id="spacing">
+  <div class="section-tag">Design Tokens</div>
+  <div class="section-title">Spacing, Stroke & Radius</div>
+  <div class="section-desc">Base-4px spacing scale. CIO.com uses <strong>sharp corners (radius: 0)</strong> throughout — a key brand signature. Buttons and inputs are fully square-cornered.</div>
+  <div class="divider"></div>
+
+  <div class="token-cat-header">
+    <div class="token-cat-icon" style="background:#faf0ef;color:#c22521;font-size:16px">⬜</div>
+    <div>
+      <div class="token-cat-title">Spacing Scale</div>
+      <div class="token-cat-desc">Base unit: 4px · 14 steps</div>
+    </div>
+  </div>
+  <div class="spacing-rows">
+    <div class="spacing-row"><div class="spacing-meta"><code style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c22521;background:#faf0ef;padding:1px 6px">--space-1</code></div><div class="spacing-bar" style="width:4px"></div><span class="spacing-val">4px</span></div>
+    <div class="spacing-row"><div class="spacing-meta"><code style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c22521;background:#faf0ef;padding:1px 6px">--space-2</code></div><div class="spacing-bar" style="width:8px"></div><span class="spacing-val">8px</span></div>
+    <div class="spacing-row"><div class="spacing-meta"><code style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c22521;background:#faf0ef;padding:1px 6px">--space-4</code></div><div class="spacing-bar" style="width:16px"></div><span class="spacing-val">16px</span></div>
+    <div class="spacing-row"><div class="spacing-meta"><code style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c22521;background:#faf0ef;padding:1px 6px">--space-6</code></div><div class="spacing-bar" style="width:24px"></div><span class="spacing-val">24px</span></div>
+    <div class="spacing-row"><div class="spacing-meta"><code style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c22521;background:#faf0ef;padding:1px 6px">--space-8</code></div><div class="spacing-bar" style="width:32px"></div><span class="spacing-val">32px</span></div>
+    <div class="spacing-row"><div class="spacing-meta"><code style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c22521;background:#faf0ef;padding:1px 6px">--space-12</code></div><div class="spacing-bar" style="width:48px"></div><span class="spacing-val">48px</span></div>
+    <div class="spacing-row"><div class="spacing-meta"><code style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c22521;background:#faf0ef;padding:1px 6px">--space-16</code></div><div class="spacing-bar" style="width:64px"></div><span class="spacing-val">64px</span></div>
+    <div class="spacing-row"><div class="spacing-meta"><code style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c22521;background:#faf0ef;padding:1px 6px">--space-20</code></div><div class="spacing-bar" style="width:80px"></div><span class="spacing-val">80px</span></div>
+    <div class="spacing-row"><div class="spacing-meta"><code style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c22521;background:#faf0ef;padding:1px 6px">--space-32</code></div><div class="spacing-bar" style="width:128px"></div><span class="spacing-val">128px</span></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="token-cat-header">
+    <div class="token-cat-icon" style="background:#f1ebe5;color:#322a2a">◻</div>
+    <div>
+      <div class="token-cat-title">Border Radius</div>
+      <div class="token-cat-desc">CIO.com signature: <strong>0px default</strong> — square, angular components throughout</div>
+    </div>
+  </div>
+  <div class="radius-grid">
+    <div class="radius-card">
+      <div class="radius-preview" style="border-radius:0px"></div>
+      <code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 5px">--radius-none</code>
+      <div style="font-size:10px;color:#75757a;margin-top:3px">0px · Default ★</div>
+    </div>
+    <div class="radius-card">
+      <div class="radius-preview" style="border-radius:2px"></div>
+      <code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 5px">--radius-xs</code>
+      <div style="font-size:10px;color:#75757a;margin-top:3px">2px · Tags</div>
+    </div>
+    <div class="radius-card">
+      <div class="radius-preview" style="border-radius:4px"></div>
+      <code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 5px">--radius-sm</code>
+      <div style="font-size:10px;color:#75757a;margin-top:3px">4px · Badges</div>
+    </div>
+    <div class="radius-card">
+      <div class="radius-preview" style="border-radius:9999px"></div>
+      <code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 5px">--radius-full</code>
+      <div style="font-size:10px;color:#75757a;margin-top:3px">9999px · Search</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="export-block">
+    <div class="export-header"><span>dimension.tokens.css</span><span class="export-lang">CSS</span></div>
+    <pre class="export-code"><code>:root {
+  /* ── Spacing (base 4px) ── */
+  --space-0:  0px;   --space-1:  4px;   --space-2:  8px;   --space-3:  12px;
+  --space-4:  16px;  --space-5:  20px;  --space-6:  24px;  --space-8:  32px;
+  --space-10: 40px;  --space-12: 48px;  --space-16: 64px;  --space-20: 80px;
+  --space-24: 96px;  --space-32: 128px;
+
+  /* ── Stroke ── */
+  --stroke-none: 0px; --stroke-xs: 0.5px; --stroke-sm: 1px;
+  --stroke-md: 1.5px; --stroke-lg: 2px;   --stroke-xl: 3px;
+
+  /* ── Border Radius — CIO signature: sharp/square ── */
+  --radius-none: 0px;    /* ★ component default — buttons, cards, inputs */
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-full: 9999px; /* search box only */
+}</code></pre>
+  </div>
+</section>
+
+<!-- ══ BUTTONS ══ -->
+<section class="section" id="buttons">
+  <div class="section-tag">Components</div>
+  <div class="section-title">CTA Buttons</div>
+  <div class="section-desc">CIO.com signature: <strong>square corners, italic monospace labels, uppercase tracking</strong>. Extracted from <code style="font-family:'JetBrains Mono',monospace;font-size:12px;background:#faf0ef;color:#c22521;padding:1px 6px">--btn-*</code> tokens on live site.</div>
+  <div class="divider"></div>
+
+  <!-- Primary -->
+  <div class="btn-variant-block">
+    <div class="btn-variant-header">
+      <span class="btn-variant-badge" style="background:#c22521;color:#fff">Primary</span>
+      <span class="btn-variant-title">Primary Button</span>
+      <span class="btn-variant-desc">Solid crimson fill. Italic monospace label. Square corners. Hover shifts to near-black — a distinctive CIO.com pattern.</span>
+    </div>
+    <div class="btn-states-strip">
+      <div class="btn-state-col"><button class="cio-btn v-primary s-default sz-default" disabled>Read More</button><span class="btn-state-tag">Default</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-primary s-hover sz-default" disabled>Read More</button><span class="btn-state-tag">Hover</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-primary s-active sz-default" disabled>Read More</button><span class="btn-state-tag">Active</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-primary s-disabled sz-default" disabled>Read More</button><span class="btn-state-tag">Disabled</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-primary s-default sz-sm" disabled>Read More</button><span class="btn-state-tag">Small</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-primary s-default sz-lg" disabled>Read More</button><span class="btn-state-tag">Large</span></div>
+    </div>
+    <table class="token-table">
+      <thead><tr><th>Token</th><th>Value</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td><code>--btn-bg</code></td><td>#c22521</td><td>Extracted from cio.com</td></tr>
+        <tr><td><code>--btn-bg-hover</code></td><td>#0c0c0c</td><td>Extracted from cio.com</td></tr>
+        <tr><td><code>--btn-color</code></td><td>#fff</td><td>Extracted from cio.com</td></tr>
+        <tr><td><code>--btn-ff</code></td><td>attribute-mono, monospace</td><td>Extracted from cio.com</td></tr>
+        <tr><td><code>--btn-fw</code></td><td>500</td><td>Extracted from cio.com</td></tr>
+        <tr><td><code>--btn-ts</code></td><td>italic</td><td>Extracted from cio.com</td></tr>
+        <tr><td><code>--btn-tt</code></td><td>uppercase</td><td>Extracted from cio.com</td></tr>
+        <tr><td><code>--btn-ls</code></td><td>0.1em</td><td>Extracted from cio.com</td></tr>
+        <tr><td><code>--btn-br</code></td><td>0</td><td>Extracted from cio.com (sharp!)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Secondary -->
+  <div class="btn-variant-block">
+    <div class="btn-variant-header">
+      <span class="btn-variant-badge" style="background:#f1ebe5;color:#c22521;border:1px solid #c22521">Secondary</span>
+      <span class="btn-variant-title">Secondary Button</span>
+      <span class="btn-variant-desc">Outlined variant. Crimson border and label on transparent bg.</span>
+    </div>
+    <div class="btn-states-strip">
+      <div class="btn-state-col"><button class="cio-btn v-secondary s-default sz-default" disabled>Learn More</button><span class="btn-state-tag">Default</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-secondary s-hover sz-default" disabled>Learn More</button><span class="btn-state-tag">Hover</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-secondary s-active sz-default" disabled>Learn More</button><span class="btn-state-tag">Active</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-secondary s-disabled sz-default" disabled>Learn More</button><span class="btn-state-tag">Disabled</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-secondary s-default sz-sm" disabled>Learn More</button><span class="btn-state-tag">Small</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-secondary s-default sz-lg" disabled>Learn More</button><span class="btn-state-tag">Large</span></div>
+    </div>
+  </div>
+
+  <!-- Tertiary -->
+  <div class="btn-variant-block">
+    <div class="btn-variant-header">
+      <span class="btn-variant-badge" style="background:#f1ebe5;color:#c22521">Tertiary</span>
+      <span class="btn-variant-title">Tertiary Button</span>
+      <span class="btn-variant-desc">Warm cream fill. Low-emphasis, subtle brand tint.</span>
+    </div>
+    <div class="btn-states-strip">
+      <div class="btn-state-col"><button class="cio-btn v-tertiary s-default sz-default" disabled>View All</button><span class="btn-state-tag">Default</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-tertiary s-hover sz-default" disabled>View All</button><span class="btn-state-tag">Hover</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-tertiary s-active sz-default" disabled>View All</button><span class="btn-state-tag">Active</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-tertiary s-disabled sz-default" disabled>View All</button><span class="btn-state-tag">Disabled</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-tertiary s-default sz-sm" disabled>View All</button><span class="btn-state-tag">Small</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-tertiary s-default sz-lg" disabled>View All</button><span class="btn-state-tag">Large</span></div>
+    </div>
+  </div>
+
+  <!-- Text CTA -->
+  <div class="btn-variant-block">
+    <div class="btn-variant-header">
+      <span class="btn-variant-badge" style="background:#faf6f4;color:#c22521;border:1px solid #e6dcd5">Text CTA</span>
+      <span class="btn-variant-title">Text CTA</span>
+      <span class="btn-variant-desc">No background or border. Inline crimson label only.</span>
+    </div>
+    <div class="btn-states-strip">
+      <div class="btn-state-col"><button class="cio-btn v-text s-default sz-default" disabled>See All Articles →</button><span class="btn-state-tag">Default</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-text s-hover sz-default" disabled>See All Articles →</button><span class="btn-state-tag">Hover</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-text s-disabled sz-default" disabled>See All Articles →</button><span class="btn-state-tag">Disabled</span></div>
+    </div>
+  </div>
+
+  <!-- Link -->
+  <div class="btn-variant-block">
+    <div class="btn-variant-header">
+      <span class="btn-variant-badge" style="background:#faf6f4;color:#c22521;border:1px solid #e6dcd5">Link</span>
+      <span class="btn-variant-title">Link</span>
+      <span class="btn-variant-desc">Underlined navigation-style link. Not italic or uppercase.</span>
+    </div>
+    <div class="btn-states-strip">
+      <div class="btn-state-col"><button class="cio-btn v-link s-default sz-default" disabled>Read the full report</button><span class="btn-state-tag">Default</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-link s-hover sz-default" disabled>Read the full report</button><span class="btn-state-tag">Hover</span></div>
+      <div class="btn-state-col"><button class="cio-btn v-link s-disabled sz-default" disabled>Read the full report</button><span class="btn-state-tag">Disabled</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SEMANTIC TOKENS ══ -->
+<section class="section" id="semantic">
+  <div class="section-tag">Design Tokens</div>
+  <div class="section-title">Semantic Color Tokens</div>
+  <div class="section-desc">Text, background, and surface roles extracted from CIO.com's live variable stack and mapped to semantic names.</div>
+  <div class="divider"></div>
+
+  <div class="layer-diagram">
+    <div class="layer-chip layer-prim">Primitive<span>#c22521</span></div>
+    <span class="layer-arrow">→</span>
+    <div class="layer-chip layer-sem">Semantic<span>--text-brand</span></div>
+    <span class="layer-arrow">→</span>
+    <div class="layer-chip layer-comp">Component<span>btn-primary-bg</span></div>
+  </div>
+
+  <div class="group-label">Text Tokens</div>
+  <div class="sem-grid">
+    <div class="sem-card"><div class="sem-swatch" style="background:#0c0c0c"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--text-primary</code><div class="sem-ref">neutral-900</div><div class="sem-val">#0c0c0c</div><div class="sem-use">Headlines, primary body</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#322a2a"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--text-secondary</code><div class="sem-ref">neutral-700</div><div class="sem-val">#322a2a</div><div class="sem-use">Supporting copy, bylines</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#75757a"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--text-tertiary</code><div class="sem-ref">neutral-500</div><div class="sem-val">#75757a</div><div class="sem-use">Timestamps, captions</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#b4b2b1"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--text-disabled</code><div class="sem-ref">neutral-400</div><div class="sem-val">#b4b2b1</div><div class="sem-use">Disabled states</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#c22521"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--text-brand</code><div class="sem-ref">color-primary</div><div class="sem-val">#c22521</div><div class="sem-use">Links, active nav</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#ab1a16"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--text-brand-hover</code><div class="sem-ref">color-primary-hover</div><div class="sem-val">#ab1a16</div><div class="sem-use">Hovered links</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#fff;border-bottom:1px solid #e6dcd5"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--text-on-fill</code><div class="sem-ref">white</div><div class="sem-val">#ffffff</div><div class="sem-use">Label on filled button</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#21873a"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--text-success</code><div class="sem-ref">accent-success</div><div class="sem-val">#21873a</div><div class="sem-use">Positive values</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#D97706"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--text-warning</code><div class="sem-ref">accent-warning</div><div class="sem-val">#D97706</div><div class="sem-use">Warning notices</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#1a4ce3"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--text-info</code><div class="sem-ref">accent-info</div><div class="sem-val">#1a4ce3</div><div class="sem-use">Info notices</div></div></div>
+  </div>
+
+  <div class="group-label">Background Tokens</div>
+  <div class="sem-grid">
+    <div class="sem-card"><div class="sem-swatch" style="background:#FAF6F4;border-bottom:1px solid #e6dcd5"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--bg-page</code><div class="sem-val">#FAF6F4</div><div class="sem-use">Root canvas (warm off-white)</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#f1ebe5;border-bottom:1px solid #e6dcd5"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--bg-subtle</code><div class="sem-val">#f1ebe5</div><div class="sem-use">Nav, aside, hover bands</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#e6dcd5;border-bottom:1px solid #d4c8c1"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--bg-muted</code><div class="sem-val">#e6dcd5</div><div class="sem-use">Footer, divider bands</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#0c0c0c"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--bg-inverse</code><div class="sem-val">#0c0c0c</div><div class="sem-use">Dark hero sections, sidebar</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#c22521"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--bg-brand</code><div class="sem-val">#c22521</div><div class="sem-use">CTA strips, nav actions</div></div></div>
+    <div class="sem-card"><div class="sem-swatch" style="background:#fff;border-bottom:1px solid #e6dcd5"></div><div class="sem-body"><code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c22521;background:#faf0ef;padding:1px 4px">--surface-base</code><div class="sem-val">#ffffff</div><div class="sem-use">Cards, dropdowns, inputs</div></div></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="export-block">
+    <div class="export-header"><span>semantic-color.tokens.css</span><span class="export-lang">CSS</span></div>
+    <pre class="export-code"><code>:root {
+  /* ── Text ── */
+  --text-primary:         #0c0c0c;  /* neutral-900  · Headlines */
+  --text-secondary:       #322a2a;  /* neutral-700  · Bylines, supporting */
+  --text-tertiary:        #75757a;  /* neutral-500  · Timestamps, captions */
+  --text-disabled:        #b4b2b1;  /* neutral-400  · Disabled labels */
+  --text-inverse:         #f1ebe5;  /* warm-cream   · Text on dark bg */
+  --text-brand:           #c22521;  /* color-primary · Links, active nav */
+  --text-brand-hover:     #ab1a16;  /* color-primary-hover */
+  --text-on-fill:         #ffffff;  /* white · Label on filled button */
+  --text-success:         #21873a;
+  --text-warning:         #D97706;
+  --text-error:           #c22521;
+  --text-info:            #1a4ce3;
+
+  /* ── Background ── */
+  --bg-page:              #FAF6F4;  /* warm off-white · root canvas */
+  --bg-subtle:            #f1ebe5;  /* nav, aside, section bands */
+  --bg-muted:             #e6dcd5;  /* footer, dividers */
+  --bg-overlay:           rgba(12,12,12,0.5);
+  --bg-inverse:           #0c0c0c;  /* dark hero, sidebar */
+  --bg-brand:             #c22521;  /* CTA strips, nav action area */
+  --bg-brand-subtle:      #faf0ef;  /* tinted brand panel */
+  --bg-success-subtle:    #f0fdf4;
+  --bg-warning-subtle:    #fffbeb;
+  --bg-error-subtle:      #fef2f2;
+  --bg-info-subtle:       #eff6ff;
+
+  /* ── Surface ── */
+  --surface-base:         #ffffff;  /* elevation 0 · cards, inputs */
+  --surface-raised:       #ffffff;  /* elevation +1 · dropdowns */
+  --surface-overlay:      #ffffff;  /* elevation +2 · modals */
+  --surface-sunken:       #f1ebe5;  /* recessed · code blocks */
+  --surface-brand:        #faf0ef;  /* brand-tinted card */
+  --surface-inverse:      #1a1a1a;  /* dark card */
+  --surface-disabled:     #f1ebe5;  /* disabled input fill */
+  --surface-hover:        #FAF6F4;  /* row/item hover */
+  --surface-selected:     #faf0ef;  /* selected state */
+}</code></pre>
+  </div>
+</section>
+
+<!-- ══ ICONOGRAPHY ══ -->
+<section class="section" id="iconography">
+  <div class="section-tag">Iconography</div>
+  <div class="section-title">Icon System</div>
+  <div class="section-desc">Remix Icons — outline style, 2400+ icons, MIT license. All icons use <code style="font-family:'JetBrains Mono',monospace;font-size:12px;background:#faf0ef;color:#c22521;padding:1px 6px">currentColor</code> for automatic semantic color inheritance.</div>
+  <div class="divider"></div>
+
+  <div class="token-cat-header">
+    <div class="token-cat-icon" style="background:#faf0ef;color:#c22521">⊞</div>
+    <div><div class="token-cat-title">Size Scale</div><div class="token-cat-desc">6 sizes from 12px to 48px — all tokenised</div></div>
+  </div>
+  <div class="icon-size-strip">
+    <div class="icon-size-demo"><i class="ri-home-line" style="font-size:12px;color:#0c0c0c"></i><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-xs</code><span style="font-size:9px;color:#75757a">12px</span></div>
+    <div class="icon-size-demo"><i class="ri-home-line" style="font-size:16px;color:#0c0c0c"></i><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-sm</code><span style="font-size:9px;color:#75757a">16px</span></div>
+    <div class="icon-size-demo"><i class="ri-home-line" style="font-size:20px;color:#0c0c0c"></i><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-md</code><span style="font-size:9px;color:#75757a">20px ★</span></div>
+    <div class="icon-size-demo"><i class="ri-home-line" style="font-size:24px;color:#0c0c0c"></i><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-lg</code><span style="font-size:9px;color:#75757a">24px</span></div>
+    <div class="icon-size-demo"><i class="ri-home-line" style="font-size:32px;color:#0c0c0c"></i><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-xl</code><span style="font-size:9px;color:#75757a">32px</span></div>
+    <div class="icon-size-demo"><i class="ri-home-line" style="font-size:48px;color:#0c0c0c"></i><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-2xl</code><span style="font-size:9px;color:#75757a">48px</span></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="token-cat-header">
+    <div class="token-cat-icon" style="background:#faf0ef;color:#c22521">◎</div>
+    <div><div class="token-cat-title">Color Roles</div><div class="token-cat-desc">Icons inherit from semantic text tokens via currentColor</div></div>
+  </div>
+  <div class="icon-color-grid">
+    <div class="icon-color-card"><div class="icon-color-preview"><i class="ri-newspaper-line" style="color:#0c0c0c"></i></div><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-default</code><div style="font-size:9px;color:#75757a;margin-top:2px">#0c0c0c</div></div>
+    <div class="icon-color-card"><div class="icon-color-preview"><i class="ri-newspaper-line" style="color:#75757a"></i></div><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-subtle</code><div style="font-size:9px;color:#75757a;margin-top:2px">#75757a</div></div>
+    <div class="icon-color-card"><div class="icon-color-preview"><i class="ri-newspaper-line" style="color:#c22521"></i></div><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-brand</code><div style="font-size:9px;color:#75757a;margin-top:2px">#c22521</div></div>
+    <div class="icon-color-card" style="background:#0c0c0c"><div class="icon-color-preview"><i class="ri-newspaper-line" style="color:#f1ebe5"></i></div><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-on-fill</code><div style="font-size:9px;color:#75757a;margin-top:2px">#f1ebe5</div></div>
+    <div class="icon-color-card"><div class="icon-color-preview"><i class="ri-newspaper-line" style="color:#b4b2b1"></i></div><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-disabled</code><div style="font-size:9px;color:#75757a;margin-top:2px">#b4b2b1</div></div>
+    <div class="icon-color-card"><div class="icon-color-preview"><i class="ri-checkbox-circle-line" style="color:#21873a"></i></div><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-success</code><div style="font-size:9px;color:#75757a;margin-top:2px">#21873a</div></div>
+    <div class="icon-color-card"><div class="icon-color-preview"><i class="ri-alert-line" style="color:#D97706"></i></div><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-warning</code><div style="font-size:9px;color:#75757a;margin-top:2px">#D97706</div></div>
+    <div class="icon-color-card"><div class="icon-color-preview"><i class="ri-close-circle-line" style="color:#c22521"></i></div><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-error</code><div style="font-size:9px;color:#75757a;margin-top:2px">#c22521</div></div>
+    <div class="icon-color-card"><div class="icon-color-preview"><i class="ri-information-line" style="color:#1a4ce3"></i></div><code style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c22521">--icon-info</code><div style="font-size:9px;color:#75757a;margin-top:2px">#1a4ce3</div></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="group-label">Navigation & UI</div>
+  <div class="icon-catalog-grid">
+    <div class="icon-item"><i class="ri-home-line"></i><span>home</span></div>
+    <div class="icon-item"><i class="ri-menu-line"></i><span>menu</span></div>
+    <div class="icon-item"><i class="ri-close-line"></i><span>close</span></div>
+    <div class="icon-item"><i class="ri-search-line"></i><span>search</span></div>
+    <div class="icon-item"><i class="ri-settings-line"></i><span>settings</span></div>
+    <div class="icon-item"><i class="ri-arrow-down-s-line"></i><span>chevron-down</span></div>
+    <div class="icon-item"><i class="ri-arrow-right-s-line"></i><span>chevron-right</span></div>
+    <div class="icon-item"><i class="ri-arrow-left-line"></i><span>arrow-left</span></div>
+    <div class="icon-item"><i class="ri-arrow-right-line"></i><span>arrow-right</span></div>
+    <div class="icon-item"><i class="ri-external-link-line"></i><span>ext-link</span></div>
+  </div>
+  <div class="group-label">Actions</div>
+  <div class="icon-catalog-grid">
+    <div class="icon-item"><i class="ri-edit-line"></i><span>edit</span></div>
+    <div class="icon-item"><i class="ri-delete-bin-line"></i><span>trash</span></div>
+    <div class="icon-item"><i class="ri-file-copy-line"></i><span>copy</span></div>
+    <div class="icon-item"><i class="ri-download-line"></i><span>download</span></div>
+    <div class="icon-item"><i class="ri-upload-line"></i><span>upload</span></div>
+    <div class="icon-item"><i class="ri-share-line"></i><span>share</span></div>
+    <div class="icon-item"><i class="ri-filter-line"></i><span>filter</span></div>
+    <div class="icon-item"><i class="ri-sort-asc"></i><span>sort</span></div>
+    <div class="icon-item"><i class="ri-refresh-line"></i><span>refresh</span></div>
+    <div class="icon-item"><i class="ri-add-line"></i><span>plus</span></div>
+  </div>
+  <div class="group-label">Content & Media</div>
+  <div class="icon-catalog-grid">
+    <div class="icon-item"><i class="ri-newspaper-line"></i><span>article</span></div>
+    <div class="icon-item"><i class="ri-video-line"></i><span>video</span></div>
+    <div class="icon-item"><i class="ri-mic-line"></i><span>podcast</span></div>
+    <div class="icon-item"><i class="ri-bookmark-line"></i><span>bookmark</span></div>
+    <div class="icon-item"><i class="ri-star-line"></i><span>star</span></div>
+    <div class="icon-item"><i class="ri-tag-line"></i><span>tag</span></div>
+    <div class="icon-item"><i class="ri-image-line"></i><span>image</span></div>
+    <div class="icon-item"><i class="ri-links-line"></i><span>link</span></div>
+    <div class="icon-item"><i class="ri-time-line"></i><span>time</span></div>
+    <div class="icon-item"><i class="ri-calendar-line"></i><span>calendar</span></div>
+  </div>
+  <div class="group-label">Status</div>
+  <div class="icon-catalog-grid">
+    <div class="icon-item"><i class="ri-checkbox-circle-line" style="color:#21873a"></i><span>success</span></div>
+    <div class="icon-item"><i class="ri-alert-line" style="color:#D97706"></i><span>warning</span></div>
+    <div class="icon-item"><i class="ri-close-circle-line" style="color:#c22521"></i><span>error</span></div>
+    <div class="icon-item"><i class="ri-information-line" style="color:#1a4ce3"></i><span>info</span></div>
+    <div class="icon-item"><i class="ri-user-line"></i><span>user</span></div>
+    <div class="icon-item"><i class="ri-team-line"></i><span>users</span></div>
+    <div class="icon-item"><i class="ri-mail-line"></i><span>mail</span></div>
+    <div class="icon-item"><i class="ri-notification-line"></i><span>bell</span></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="rules-grid">
+    <div class="rule-card rule-do">
+      <div class="rule-header">✓ Do</div>
+      <ul class="rule-list">
+        <li>Always use <code>currentColor</code> — never hardcode fills</li>
+        <li>Use <code>--icon-md</code> (20px) as the default size</li>
+        <li>Add <code>aria-label</code> to icon-only buttons</li>
+        <li>Use outline style; filled for selected/active states</li>
+        <li>Match icon weight to surrounding typography</li>
+      </ul>
+    </div>
+    <div class="rule-card rule-dont">
+      <div class="rule-header">✗ Don't</div>
+      <ul class="rule-list">
+        <li>Don't mix icon libraries on the same surface</li>
+        <li>Don't use non-tokenised sizes (e.g. 18px, 22px)</li>
+        <li>Don't use icons as sole communication of status</li>
+        <li>Don't use decorative icons without <code>aria-hidden="true"</code></li>
+        <li>Don't hardcode icon colors — use semantic tokens</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPORTS ══ -->
+<section class="section" id="exports">
+  <div class="section-tag">Exports</div>
+  <div class="section-title">Complete Token Files</div>
+  <div class="section-desc">Full W3C DTCG JSON export of all design tokens — ready for Tokens Studio, Style Dictionary, or direct codebase integration.</div>
+  <div class="divider"></div>
+
+  <div class="export-block">
+    <div class="export-header"><span>cio.design-tokens.json (W3C DTCG)</span><span class="export-lang">JSON</span></div>
+    <pre class="export-code"><code>{
+  "color": {
+    "primary":       { "$type": "color", "$value": "#c22521", "$description": "CIO Crimson — main brand color" },
+    "primaryHover":  { "$type": "color", "$value": "#ab1a16", "$description": "Hover state" },
+    "primaryActive": { "$type": "color", "$value": "#8c1513", "$description": "Active/pressed" },
+    "secondary":     { "$type": "color", "$value": "#0c0c0c", "$description": "Near Black" },
+    "tertiary":      { "$type": "color", "$value": "#f1ebe5", "$description": "Warm Cream" }
+  },
+  "neutral": {
+    "50":  { "$type": "color", "$value": "#FAF6F4" },
+    "100": { "$type": "color", "$value": "#F1EBE5" },
+    "200": { "$type": "color", "$value": "#E6DCD5" },
+    "300": { "$type": "color", "$value": "#D4C8C1" },
+    "400": { "$type": "color", "$value": "#B4B2B1" },
+    "500": { "$type": "color", "$value": "#75757A" },
+    "600": { "$type": "color", "$value": "#4D4D4D" },
+    "700": { "$type": "color", "$value": "#322A2A" },
+    "800": { "$type": "color", "$value": "#1A1A1A" },
+    "900": { "$type": "color", "$value": "#0C0C0C" }
+  },
+  "accent": {
+    "success": { "$type": "color", "$value": "#21873A" },
+    "warning": { "$type": "color", "$value": "#D97706" },
+    "error":   { "$type": "color", "$value": "#c22521" },
+    "info":    { "$type": "color", "$value": "#1a4ce3" }
+  },
+  "text": {
+    "primary":       { "$type": "color", "$value": "{neutral.900}" },
+    "secondary":     { "$type": "color", "$value": "{neutral.700}" },
+    "tertiary":      { "$type": "color", "$value": "{neutral.500}" },
+    "disabled":      { "$type": "color", "$value": "{neutral.400}" },
+    "inverse":       { "$type": "color", "$value": "{neutral.100}" },
+    "brand":         { "$type": "color", "$value": "{color.primary}" },
+    "brandHover":    { "$type": "color", "$value": "{color.primaryHover}" },
+    "onFill":        { "$type": "color", "$value": "#ffffff" },
+    "success":       { "$type": "color", "$value": "{accent.success}" },
+    "warning":       { "$type": "color", "$value": "{accent.warning}" },
+    "error":         { "$type": "color", "$value": "{accent.error}" },
+    "info":          { "$type": "color", "$value": "{accent.info}" }
+  },
+  "bg": {
+    "page":           { "$type": "color", "$value": "#FAF6F4" },
+    "subtle":         { "$type": "color", "$value": "#f1ebe5" },
+    "muted":          { "$type": "color", "$value": "#e6dcd5" },
+    "overlay":        { "$type": "color", "$value": "rgba(12,12,12,0.5)" },
+    "inverse":        { "$type": "color", "$value": "#0c0c0c" },
+    "brand":          { "$type": "color", "$value": "{color.primary}" },
+    "brandSubtle":    { "$type": "color", "$value": "#faf0ef" }
+  },
+  "surface": {
+    "base":       { "$type": "color", "$value": "#ffffff" },
+    "raised":     { "$type": "color", "$value": "#ffffff" },
+    "overlay":    { "$type": "color", "$value": "#ffffff" },
+    "sunken":     { "$type": "color", "$value": "#f1ebe5" },
+    "inverse":    { "$type": "color", "$value": "#1a1a1a" },
+    "disabled":   { "$type": "color", "$value": "#f1ebe5" },
+    "hover":      { "$type": "color", "$value": "#FAF6F4" },
+    "selected":   { "$type": "color", "$value": "#faf0ef" }
+  },
+  "space": {
+    "0":  { "$type": "dimension", "$value": "0px" },
+    "1":  { "$type": "dimension", "$value": "4px" },
+    "2":  { "$type": "dimension", "$value": "8px" },
+    "3":  { "$type": "dimension", "$value": "12px" },
+    "4":  { "$type": "dimension", "$value": "16px" },
+    "5":  { "$type": "dimension", "$value": "20px" },
+    "6":  { "$type": "dimension", "$value": "24px" },
+    "8":  { "$type": "dimension", "$value": "32px" },
+    "10": { "$type": "dimension", "$value": "40px" },
+    "12": { "$type": "dimension", "$value": "48px" },
+    "16": { "$type": "dimension", "$value": "64px" },
+    "20": { "$type": "dimension", "$value": "80px" },
+    "24": { "$type": "dimension", "$value": "96px" },
+    "32": { "$type": "dimension", "$value": "128px" }
+  },
+  "radius": {
+    "none": { "$type": "dimension", "$value": "0px",    "$description": "CIO default — square components" },
+    "xs":   { "$type": "dimension", "$value": "2px" },
+    "sm":   { "$type": "dimension", "$value": "4px" },
+    "full": { "$type": "dimension", "$value": "9999px", "$description": "Search box only" }
+  },
+  "stroke": {
+    "none": { "$type": "dimension", "$value": "0px" },
+    "xs":   { "$type": "dimension", "$value": "0.5px" },
+    "sm":   { "$type": "dimension", "$value": "1px" },
+    "md":   { "$type": "dimension", "$value": "1.5px" },
+    "lg":   { "$type": "dimension", "$value": "2px" },
+    "xl":   { "$type": "dimension", "$value": "3px" }
+  },
+  "type": {
+    "display": { "$type": "typography", "$value": { "fontFamily": "Playfair Display, serif", "fontSize": "60px", "fontWeight": 400, "lineHeight": 1.05, "letterSpacing": "-0.04em", "fontStyle": "italic" } },
+    "h1":      { "$type": "typography", "$value": { "fontFamily": "Playfair Display, serif", "fontSize": "40px", "fontWeight": 400, "lineHeight": 1.15, "letterSpacing": "-0.04em" } },
+    "h2":      { "$type": "typography", "$value": { "fontFamily": "Playfair Display, serif", "fontSize": "32px", "fontWeight": 400, "lineHeight": 1.2,  "letterSpacing": "-0.04em" } },
+    "h3":      { "$type": "typography", "$value": { "fontFamily": "Inter, sans-serif",        "fontSize": "24px", "fontWeight": 600, "lineHeight": 1.25, "letterSpacing": "-0.03em" } },
+    "h4":      { "$type": "typography", "$value": { "fontFamily": "Inter, sans-serif",        "fontSize": "20px", "fontWeight": 600, "lineHeight": 1.3,  "letterSpacing": "-0.03em" } },
+    "bodyLg":  { "$type": "typography", "$value": { "fontFamily": "Inter, sans-serif",        "fontSize": "18px", "fontWeight": 400, "lineHeight": 1.563,"letterSpacing": "-0.01em" } },
+    "bodyMd":  { "$type": "typography", "$value": { "fontFamily": "Inter, sans-serif",        "fontSize": "16px", "fontWeight": 400, "lineHeight": 1.5,  "letterSpacing": "-0.01em" } },
+    "label":   { "$type": "typography", "$value": { "fontFamily": "JetBrains Mono, monospace","fontSize": "12px", "fontWeight": 500, "lineHeight": 1.2,  "letterSpacing": "0.1em",   "fontStyle": "italic", "textTransform": "uppercase" } },
+    "caption": { "$type": "typography", "$value": { "fontFamily": "Inter, sans-serif",        "fontSize": "12px", "fontWeight": 400, "lineHeight": 1.4,  "letterSpacing": "-0.01em" } }
+  },
+  "btn": {
+    "size": {
+      "sm":      { "height": { "$type": "dimension", "$value": "32px" }, "paddingH": { "$type": "dimension", "$value": "14px" }, "fontSize": { "$type": "dimension", "$value": "11px" } },
+      "default": { "height": { "$type": "dimension", "$value": "40px" }, "paddingH": { "$type": "dimension", "$value": "20px" }, "fontSize": { "$type": "dimension", "$value": "12px" } },
+      "lg":      { "height": { "$type": "dimension", "$value": "48px" }, "paddingH": { "$type": "dimension", "$value": "24px" }, "fontSize": { "$type": "dimension", "$value": "14px" } }
+    },
+    "primary": {
+      "bg":          { "$type": "color", "$value": "{color.primary}" },
+      "bgHover":     { "$type": "color", "$value": "{color.primaryHover}" },
+      "bgActive":    { "$type": "color", "$value": "{color.primaryActive}" },
+      "label":       { "$type": "color", "$value": "#ffffff" },
+      "border":      { "$type": "color", "$value": "{color.primary}" },
+      "radius":      { "$type": "dimension", "$value": "{radius.none}" },
+      "fontFamily":  { "$type": "fontFamily", "$value": "JetBrains Mono, monospace" },
+      "fontStyle":   "$value: italic",
+      "textTransform": "$value: uppercase",
+      "letterSpacing": { "$type": "dimension", "$value": "0.1em" }
+    }
+  },
+  "icon": {
+    "size": {
+      "xs":  { "$type": "dimension", "$value": "12px" },
+      "sm":  { "$type": "dimension", "$value": "16px" },
+      "md":  { "$type": "dimension", "$value": "20px" },
+      "lg":  { "$type": "dimension", "$value": "24px" },
+      "xl":  { "$type": "dimension", "$value": "32px" },
+      "2xl": { "$type": "dimension", "$value": "48px" }
+    },
+    "color": {
+      "default":  { "$type": "color", "$value": "{text.primary}" },
+      "subtle":   { "$type": "color", "$value": "{text.tertiary}" },
+      "brand":    { "$type": "color", "$value": "{text.brand}" },
+      "onFill":   { "$type": "color", "$value": "{text.onFill}" },
+      "disabled": { "$type": "color", "$value": "{text.disabled}" },
+      "success":  { "$type": "color", "$value": "{text.success}" },
+      "warning":  { "$type": "color", "$value": "{text.warning}" },
+      "error":    { "$type": "color", "$value": "{text.error}" },
+      "info":     { "$type": "color", "$value": "{text.info}" }
+    }
+  }
+}</code></pre>
+  </div>
+
+  <div style="margin-top:32px;padding:20px;background:#f1ebe5;border-left:3px solid #c22521">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#c22521;margin-bottom:8px">Extraction Summary</div>
+    <div style="font-size:13px;color:#322a2a;line-height:1.7">
+      <strong>470 CSS variables</strong> extracted from live cio.com page via Chrome JS injection.<br/>
+      Source URL: <code style="font-family:'JetBrains Mono',monospace;font-size:11px;background:#fff;padding:1px 5px">https://www.cio.com/</code><br/>
+      Extracted: June 23, 2026<br/>
+      Key brand signatures: <strong>CIO Crimson #c22521</strong>, warm cream backgrounds, square corners (radius: 0), italic monospace button labels.
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+</body>
+</html>
