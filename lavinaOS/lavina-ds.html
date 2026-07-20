@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Lavina DS — Design System Extraction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* ── source tokens, verbatim from lavina-folio-e7258c.netlify.app ── */
+    --paper:#efe9dd;
+    --paper-2:#e7dfd0;
+    --ink:#1a1714;
+    --ink-2:#3a342d;
+    --muted:#7a6f60;
+    --rule:#1a171422;
+    --accent:#b8451f;
+    --blueprint:#1e3a5f;
+    --serif:"Instrument Serif","Times New Roman",serif;
+    --sans:"Geist",ui-sans-serif,system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+    --hindi:"Tiro Devanagari Hindi",serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:400;
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:var(--paper)}
+  a{color:inherit}
+
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    background-image:
+      radial-gradient(circle at 20% 30%, #00000008 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, #00000008 0, transparent 40%);
+    mix-blend-mode:multiply;
+    z-index:1;
+  }
+
+  .wrap{max-width:1280px; margin:0 auto; padding:0 48px; position:relative; z-index:2}
+  @media (max-width:720px){ .wrap{padding:0 20px} }
+
+  code, pre{ font-family:var(--mono); }
+
+  /* ────── nav ────── */
+  nav.top{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in oklab, var(--paper) 92%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+  }
+  nav.top .row{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px; gap:24px;
+    font-family:var(--mono);
+    font-size:12px; letter-spacing:.04em; text-transform:uppercase;
+  }
+  nav.top .mark{display:flex; align-items:center; gap:10px; color:var(--ink); white-space:nowrap; font-weight:500}
+  nav.top .mark .glyph{
+    width:22px; height:22px; border:1.5px solid var(--ink); position:relative;
+    display:inline-block; flex:none;
+  }
+  nav.top .mark .glyph::after{
+    content:""; position:absolute; inset:3px 3px auto auto; width:8px; height:8px;
+    background:var(--accent);
+  }
+  nav.top ul{
+    display:flex; gap:28px; list-style:none; margin:0; padding:0;
+    overflow-x:auto;
+  }
+  nav.top a{ color:var(--ink-2); text-decoration:none; cursor:pointer }
+  nav.top a:hover{ color:var(--accent) }
+  nav.top .source{ color:var(--muted); white-space:nowrap; text-decoration:none }
+  nav.top .source:hover{ color:var(--accent) }
+  @media (max-width:720px){ nav.top .source{ display:none } }
+
+  /* ────── hero ────── */
+  header.hero{
+    position:relative;
+    padding:72px 0 56px;
+    border-bottom:1px solid var(--rule);
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--muted);
+    display:flex; align-items:center; gap:14px;
+  }
+  .eyebrow::before{ content:""; width:32px; height:1px; background:var(--ink); }
+
+  h1.display{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(40px, 6.4vw, 88px);
+    line-height:.98;
+    letter-spacing:-0.02em;
+    margin:22px 0 0;
+    color:var(--ink);
+  }
+  h1.display em{ font-style:italic; color:var(--accent) }
+
+  .hero-foot{
+    display:grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap:48px;
+    margin-top:44px;
+    align-items:end;
+  }
+  @media (max-width:860px){ .hero-foot{ grid-template-columns:1fr; gap:28px } }
+
+  .lede{
+    font-family:var(--serif);
+    font-size:clamp(18px, 1.4vw, 22px);
+    line-height:1.5;
+    color:var(--ink-2);
+    max-width:46ch;
+  }
+  .lede em{ color:var(--accent); font-style:italic }
+
+  .meta{
+    font-family:var(--mono);
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted);
+    display:grid; grid-template-columns:1fr 1fr; gap:20px 32px;
+    border-top:1px solid var(--rule); padding-top:20px;
+  }
+  .meta b{ display:block; color:var(--ink); font-weight:500; margin-bottom:6px }
+  .meta a{ color:var(--ink); text-decoration:none; border-bottom:1px solid var(--rule) }
+  .meta a:hover{ color:var(--accent); border-color:var(--accent) }
+
+  /* ────── section header ────── */
+  .section{ padding:88px 0; border-bottom:1px solid var(--rule); position:relative; }
+  .section-head{
+    display:grid; grid-template-columns: 200px 1fr; gap:40px;
+    margin-bottom:48px;
+  }
+  @media (max-width:860px){ .section-head{ grid-template-columns:1fr; gap:14px } }
+  .section-head .tag{
+    font-family:var(--mono); font-size:11px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--muted);
+    padding-top:14px; border-top:1px solid var(--ink);
+  }
+  .section-head h2{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(30px,4.2vw,52px);
+    line-height:1.02;
+    letter-spacing:-0.015em;
+    margin:0;
+  }
+  .section-head h2 em{ font-style:italic; color:var(--accent) }
+  .section-head p.dek{
+    font-family:var(--serif); font-size:17px; color:var(--ink-2);
+    max-width:56ch; margin:14px 0 0;
+  }
+
+  /* ────── color tokens ────── */
+  .swatch-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    border:1px solid var(--rule);
+    background:var(--rule);
+  }
+  @media (max-width:860px){ .swatch-grid{ grid-template-columns:repeat(2,1fr) } }
+  @media (max-width:480px){ .swatch-grid{ grid-template-columns:1fr } }
+  .swatch{ background:var(--paper); display:flex; flex-direction:column; }
+  .swatch .chip{ height:110px; position:relative; }
+  .swatch .body{ padding:16px 18px 20px; }
+  .swatch .name{
+    font-family:var(--mono); font-size:12px; font-weight:500;
+    color:var(--ink); margin:0 0 4px;
+  }
+  .swatch .hex{
+    font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+    color:var(--muted); margin:0 0 10px; text-transform:uppercase;
+  }
+  .swatch .role{
+    font-family:var(--serif); font-size:14px; color:var(--ink-2);
+    margin:0; line-height:1.4;
+  }
+  .swatch .chip .on-ink{ color:var(--paper) }
+  .chip-label{
+    position:absolute; bottom:8px; left:10px;
+    font-family:var(--mono); font-size:9px; letter-spacing:.1em;
+    text-transform:uppercase; opacity:.6;
+  }
+
+  .tint-row{
+    display:flex; gap:1px; margin-top:1px; flex-wrap:wrap;
+    border:1px solid var(--rule);
+  }
+  .tint{
+    flex:1; min-width:90px; height:64px; display:flex; align-items:flex-end;
+    padding:8px; font-family:var(--mono); font-size:9px; letter-spacing:.06em;
+    color:var(--muted);
+  }
+
+  /* ────── typography ────── */
+  .type-row{
+    display:grid; grid-template-columns: 1fr 260px; gap:32px;
+    padding:32px 0; border-bottom:1px solid var(--rule);
+    align-items:baseline;
+  }
+  .type-row:first-of-type{ padding-top:0 }
+  .type-row:last-of-type{ border-bottom:none }
+  @media (max-width:860px){ .type-row{ grid-template-columns:1fr; gap:12px } }
+  .type-sample{ overflow-wrap:anywhere; }
+  .type-meta{
+    font-family:var(--mono); font-size:11px; letter-spacing:.08em;
+    color:var(--muted); line-height:1.8;
+  }
+  .type-meta .k{ color:var(--ink); font-weight:500 }
+  .type-meta .role{
+    display:inline-block; font-family:var(--mono); font-size:10px;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--accent);
+    margin-bottom:8px;
+  }
+
+  .font-cards{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; border:1px solid var(--rule); background:var(--rule); margin-bottom:56px; }
+  @media (max-width:860px){ .font-cards{ grid-template-columns:repeat(2,1fr) } }
+  .font-card{ background:var(--paper); padding:28px 22px; }
+  .font-card .big{ font-size:44px; line-height:1; margin-bottom:14px; color:var(--ink) }
+  .font-card .fname{ font-family:var(--mono); font-size:12px; font-weight:500; margin:0 0 4px }
+  .font-card .fuse{ font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:0 }
+
+  /* ────── buttons / components ────── */
+  .comp-block{
+    display:grid; grid-template-columns: 320px 1fr; gap:40px;
+    padding:40px 0; border-bottom:1px solid var(--rule);
+  }
+  .comp-block:last-of-type{ border-bottom:none }
+  @media (max-width:860px){ .comp-block{ grid-template-columns:1fr; gap:20px } }
+  .comp-info .cname{
+    font-family:var(--serif); font-size:24px; margin:0 0 8px; color:var(--ink);
+  }
+  .comp-info .cdesc{
+    font-family:var(--serif); font-size:15px; color:var(--ink-2); margin:0 0 16px; max-width:34ch;
+  }
+  .comp-info .states{ font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:var(--muted); line-height:1.9; }
+  .comp-info .states b{ color:var(--ink); font-weight:500 }
+  .comp-stage{
+    background:var(--paper-2); border:1px solid var(--rule);
+    padding:40px; display:flex; flex-wrap:wrap; align-items:center; gap:28px;
+    min-height:120px;
+  }
+  .stage-note{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); width:100%; margin-bottom:-8px }
+
+  /* real extracted button */
+  .btn-view{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 22px;
+    font-family:var(--mono); font-size:11px; letter-spacing:.18em;
+    text-transform:uppercase; text-decoration:none;
+    color:var(--ink); background:transparent;
+    border:1px solid var(--ink);
+    transition: background .25s ease, color .25s ease, transform .25s ease;
+    cursor:pointer;
+  }
+  .btn-view .v-arrow{ display:inline-block; transition: transform .25s ease; }
+  .btn-view:hover{ background:var(--ink); color:var(--paper); }
+  .btn-view:hover .v-arrow{ transform: translate(3px,-3px); }
+
+  .btn-icon{
+    width:32px; height:32px; border:1px solid var(--ink); border-radius:50%;
+    display:grid; place-items:center; color:var(--ink);
+    transition: transform .3s ease, background .3s ease, color .3s ease;
+    cursor:pointer; background:transparent; flex:none;
+  }
+  .btn-icon:hover{ background:var(--ink); color:var(--paper); transform: translate(4px,-4px); }
+
+  .btn-navlink{
+    font-family:var(--mono); font-size:12px; letter-spacing:.04em;
+    text-transform:uppercase; color:var(--ink-2); text-decoration:none; cursor:pointer;
+  }
+  .btn-navlink:hover{ color:var(--accent); }
+
+  .btn-tag{
+    display:inline-block; padding:6px 10px; border:1px solid var(--rule);
+    font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted); background:transparent;
+  }
+
+  .btn-inline{
+    color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent);
+    padding-bottom:1px; font-family:var(--mono); font-size:11px; letter-spacing:.14em;
+    text-transform:uppercase; cursor:pointer;
+  }
+
+  .btn-wordrow{
+    display:inline-flex; align-items:baseline; gap:10px; cursor:pointer;
+    font-family:var(--hindi); font-size:28px; color:var(--ink);
+    transition: color .25s ease, transform .25s ease;
+  }
+  .btn-wordrow:hover{ color:var(--accent); transform: translateX(6px); }
+  .btn-wordrow .en{ font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+
+  /* ────── component tokens ────── */
+  .token-grid{ display:grid; grid-template-columns: repeat(2,1fr); gap:1px; border:1px solid var(--rule); background:var(--rule); }
+  @media (max-width:860px){ .token-grid{ grid-template-columns:1fr } }
+  .token-card{ background:var(--paper); padding:28px 26px; }
+  .token-card h4{
+    font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 18px; padding-bottom:12px; border-bottom:1px solid var(--rule);
+  }
+
+  .spacing-scale{ display:flex; flex-direction:column; gap:8px; }
+  .spacing-row{ display:flex; align-items:center; gap:14px; }
+  .spacing-row .bar{ background:var(--accent); height:8px; }
+  .spacing-row .val{ font-family:var(--mono); font-size:11px; color:var(--ink-2); width:48px; flex:none; }
+
+  .radius-row{ display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
+  .radius-demo{ width:56px; height:56px; border:1.5px solid var(--ink); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:9px; color:var(--muted); text-align:center; }
+
+  .shadow-demo{
+    width:120px; height:80px; background:var(--paper-2); border:1px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink); margin:8px 32px 24px 0;
+  }
+  .border-demo-row{ display:flex; flex-direction:column; gap:14px; }
+  .border-demo{ height:1px; width:100%; }
+
+  .bp-list{ font-family:var(--mono); font-size:12px; color:var(--ink-2); line-height:2.1; }
+  .bp-list b{ color:var(--ink); font-weight:500; }
+  .bp-list .bar{ display:inline-block; height:6px; background:var(--blueprint); margin-right:12px; vertical-align:middle; }
+
+  .motion-list{ font-family:var(--mono); font-size:12px; color:var(--ink-2); line-height:2.1; }
+  .motion-list b{ color:var(--ink); font-weight:500 }
+
+  details.raw{
+    margin-top:8px;
+  }
+  details.raw summary{
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); cursor:pointer; padding:14px 0; border-top:1px solid var(--ink);
+  }
+  details.raw summary:hover{ color:var(--accent) }
+  details.raw pre{
+    background:var(--ink); color:var(--paper); padding:24px; overflow-x:auto;
+    font-size:12px; line-height:1.7; margin:0 0 24px;
+  }
+  details.raw pre .c{ color:#efe9dd88 }
+  details.raw pre .v{ color:var(--accent) }
+
+  /* ────── footer ────── */
+  footer{
+    padding:40px 0;
+    font-family:var(--mono); font-size:11px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--muted);
+    display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  footer a{ color:var(--ink); text-decoration:none }
+  footer a:hover{ color:var(--accent) }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap row">
+    <a class="mark" href="#top"><span class="glyph"></span>LAVINA DS</a>
+    <ul>
+      <li><a href="#colors">Colors</a></li>
+      <li><a href="#typography">Typography</a></li>
+      <li><a href="#buttons">Buttons</a></li>
+      <li><a href="#tokens">Tokens</a></li>
+    </ul>
+    <a class="source" href="https://lavina-folio-e7258c.netlify.app/" target="_blank" rel="noopener">lavina-folio-e7258c.netlify.app ↗</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">DESIGN SYSTEM · EXTRACTED</div>
+    <h1 class="display">Lavina <em>DS</em></h1>
+    <div class="hero-foot">
+      <p class="lede">A token audit pulled live from Lavina Alagh's portfolio — the <em>drafting‑paper</em> visual language, read straight out of its stylesheet.</p>
+      <div class="meta">
+        <div><b>Source</b><a href="https://lavina-folio-e7258c.netlify.app/" target="_blank" rel="noopener">lavina-folio-e7258c.netlify.app</a></div>
+        <div><b>Extracted</b>9 July 2026</div>
+        <div><b>Method</b>Live DOM + computed styles</div>
+        <div><b>Scope</b>Colors · Type · Buttons · Tokens</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════ COLORS ═══════════════════════ -->
+<section class="section" id="colors">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">01 — Foundations</div>
+      <div>
+        <h2>Color <em>tokens</em></h2>
+        <p class="dek">Eight custom properties defined once in <code>:root</code>. A warm paper base, two ink tones for hierarchy, one muted label color, and two accents used sparingly — terracotta for emphasis, blueprint for directional marks.</p>
+      </div>
+    </div>
+
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="chip" style="background:#efe9dd"><span class="chip-label">--paper</span></div>
+        <div class="body">
+          <p class="name">--paper</p>
+          <p class="hex">#EFE9DD</p>
+          <p class="role">Base page background — warm paper cream.</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#e7dfd0"><span class="chip-label">--paper-2</span></div>
+        <div class="body">
+          <p class="name">--paper-2</p>
+          <p class="hex">#E7DFD0</p>
+          <p class="role">Secondary surface — cards, hover fills, dividers gradient.</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#1a1714"><span class="chip-label on-ink">--ink</span></div>
+        <div class="body">
+          <p class="name">--ink</p>
+          <p class="hex">#1A1714</p>
+          <p class="role">Primary text, default borders, dark section fills.</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#3a342d"><span class="chip-label on-ink">--ink-2</span></div>
+        <div class="body">
+          <p class="name">--ink-2</p>
+          <p class="hex">#3A342D</p>
+          <p class="role">Secondary text — body copy, nav links at rest.</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#7a6f60"><span class="chip-label on-ink">--muted</span></div>
+        <div class="body">
+          <p class="name">--muted</p>
+          <p class="hex">#7A6F60</p>
+          <p class="role">Tertiary — eyebrows, meta labels, captions.</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#efe9dd; position:relative">
+          <div style="position:absolute; inset:0; background:#1a1714; opacity:.133"></div>
+          <span class="chip-label">--rule</span>
+        </div>
+        <div class="body">
+          <p class="name">--rule</p>
+          <p class="hex">rgba(26,23,20,.133)</p>
+          <p class="role">Hairline dividers — 13% ink over paper.</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#b8451f"><span class="chip-label on-ink">--accent</span></div>
+        <div class="body">
+          <p class="name">--accent</p>
+          <p class="hex">#B8451F</p>
+          <p class="role">Terracotta — emphasis italics, links, hover, active marks.</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#1e3a5f"><span class="chip-label on-ink">--blueprint</span></div>
+        <div class="body">
+          <p class="name">--blueprint</p>
+          <p class="hex">#1E3A5F</p>
+          <p class="role">Drafting blue — arrows and system/direction marks only.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="raw">
+      <summary>View raw :root — CSS custom properties</summary>
+      <pre><span class="c">:root{</span>
+  --paper:<span class="v">#efe9dd</span>;
+  --paper-2:<span class="v">#e7dfd0</span>;
+  --ink:<span class="v">#1a1714</span>;
+  --ink-2:<span class="v">#3a342d</span>;
+  --muted:<span class="v">#7a6f60</span>;
+  --rule:<span class="v">#1a171422</span>;
+  --accent:<span class="v">#b8451f</span>;       <span class="c">/* terracotta */</span>
+  --blueprint:<span class="v">#1e3a5f</span>;    <span class="c">/* drafting blue */</span>
+<span class="c">}</span></pre>
+    </details>
+  </div>
+</section>
+
+<!-- ═══════════════════════ TYPOGRAPHY ═══════════════════════ -->
+<section class="section" id="typography">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">02 — Foundations</div>
+      <div>
+        <h2>Text <em>styles</em></h2>
+        <p class="dek">Four families, each with one job: a serif for editorial voice, a sans for interface body copy, a mono for every label and button, and a Devanagari serif reserved for the Hindi sections.</p>
+      </div>
+    </div>
+
+    <div class="font-cards">
+      <div class="font-card">
+        <div class="big" style="font-family:var(--serif); font-style:italic;">Aa</div>
+        <p class="fname">Instrument Serif</p>
+        <p class="fuse">Display · editorial body</p>
+      </div>
+      <div class="font-card">
+        <div class="big" style="font-family:var(--sans); font-weight:500;">Aa</div>
+        <p class="fname">Geist</p>
+        <p class="fuse">Interface / body text</p>
+      </div>
+      <div class="font-card">
+        <div class="big" style="font-family:var(--mono);">Aa</div>
+        <p class="fname">JetBrains Mono</p>
+        <p class="fuse">Labels · nav · buttons · meta</p>
+      </div>
+      <div class="font-card">
+        <div class="big" style="font-family:var(--hindi);">अआ</div>
+        <p class="fname">Tiro Devanagari Hindi</p>
+        <p class="fuse">Hindi display sections</p>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-sample" style="font-family:var(--serif); font-size:clamp(40px,6.4vw,88px); line-height:.92; letter-spacing:-0.02em;">Display <em style="color:var(--accent); font-style:italic;">H1</em></div>
+      <div class="type-meta">
+        <div class="role">Hero headline</div>
+        <div><span class="k">Instrument Serif</span> · 400</div>
+        <div>clamp(56px, 10vw, 156px)</div>
+        <div>line-height .92 · ls -0.02em</div>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-sample" style="font-family:var(--serif); font-size:clamp(30px,4.2vw,52px); line-height:1; letter-spacing:-0.015em;">Section <em style="color:var(--accent); font-style:italic;">header</em></div>
+      <div class="type-meta">
+        <div class="role">Section H2</div>
+        <div><span class="k">Instrument Serif</span> · 400</div>
+        <div>clamp(36px, 5.5vw, 72px)</div>
+        <div>line-height 1 · ls -0.015em</div>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-sample" style="font-family:var(--hindi); font-size:clamp(34px,6vw,64px); line-height:1.05; letter-spacing:-0.01em;">हिंदी <em style="color:var(--accent); font-style:italic;">शीर्षक</em></div>
+      <div class="type-meta">
+        <div class="role">Hindi display</div>
+        <div><span class="k">Tiro Devanagari Hindi</span> · 400</div>
+        <div>clamp(56px, 10vw, 140px)</div>
+        <div>line-height 1.05 · ls -0.01em</div>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-sample" style="font-family:var(--serif); font-size:clamp(20px,1.6vw,26px); line-height:1.45; color:var(--ink-2);">A serif lede sets up each hero, up to 34 characters wide.</div>
+      <div class="type-meta">
+        <div class="role">Lede paragraph</div>
+        <div><span class="k">Instrument Serif</span> · 400</div>
+        <div>clamp(20px, 1.6vw, 26px)</div>
+        <div>line-height 1.45</div>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-sample" style="font-family:var(--serif); font-size:20px; line-height:1.5; color:var(--ink-2); max-width:38ch;">Body copy inside long-form sections reads at 20px serif, roomy and editorial.</div>
+      <div class="type-meta">
+        <div class="role">Body / serif</div>
+        <div><span class="k">Instrument Serif</span> · 400</div>
+        <div>20px fixed</div>
+        <div>line-height 1.5</div>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-sample" style="font-family:var(--sans); font-size:16px; line-height:1.5;">Base interface copy sits on Geist at 16px — the page's neutral voice.</div>
+      <div class="type-meta">
+        <div class="role">Body / sans</div>
+        <div><span class="k">Geist</span> · 400</div>
+        <div>16px fixed</div>
+        <div>line-height 1.5</div>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-sample" style="font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:14px;"><span style="width:32px;height:1px;background:var(--ink);display:inline-block"></span>Eyebrow label</div>
+      <div class="type-meta">
+        <div class="role">Eyebrow / tag / meta</div>
+        <div><span class="k">JetBrains Mono</span> · 400</div>
+        <div>11–12px</div>
+        <div>ls .14–.18em · uppercase</div>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-sample" style="font-family:var(--mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-2);">Nav Item</div>
+      <div class="type-meta">
+        <div class="role">Navigation link</div>
+        <div><span class="k">JetBrains Mono</span> · 400</div>
+        <div>12px</div>
+        <div>ls .04em · uppercase</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ BUTTONS ═══════════════════════ -->
+<section class="section" id="buttons">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">03 — Components</div>
+      <div>
+        <h2>Button <em>components</em></h2>
+        <p class="dek">There's no filled/solid button anywhere on the site — every actionable element is an outline, a bare link, or a hairline chip that inverts to ink on hover. Hover the stage to see each state live.</p>
+      </div>
+    </div>
+
+    <div class="comp-block">
+      <div class="comp-info">
+        <p class="cname">Primary — Ghost button</p>
+        <p class="cdesc">The only true "button." Used once per project card to open a case study.</p>
+        <div class="states">
+          <div><b>Default</b> transparent fill · 1px ink border · ink text</div>
+          <div><b>Hover</b> inverts to ink fill · paper text · arrow shifts +3,-3</div>
+          <div><b>Transition</b> background/color/transform .25s ease</div>
+        </div>
+      </div>
+      <div class="comp-stage">
+        <span class="stage-note">selector: .project .view</span>
+        <a class="btn-view">View project <span class="v-arrow">↗</span></a>
+      </div>
+    </div>
+
+    <div class="comp-block">
+      <div class="comp-info">
+        <p class="cname">Icon button — Circular</p>
+        <p class="cdesc">Corner affordance on project cards, hinting the whole card is clickable.</p>
+        <div class="states">
+          <div><b>Default</b> 32×32px circle · 1px ink border · transparent</div>
+          <div><b>Hover</b> ink fill · paper icon · translate(4px,-4px)</div>
+          <div><b>Transition</b> transform/background/color .3s ease</div>
+        </div>
+      </div>
+      <div class="comp-stage">
+        <span class="stage-note">selector: .arrow-out</span>
+        <div class="btn-icon">↗</div>
+      </div>
+    </div>
+
+    <div class="comp-block">
+      <div class="comp-info">
+        <p class="cname">Nav link</p>
+        <p class="cdesc">Plain-text navigation. No underline, no border — only a color shift.</p>
+        <div class="states">
+          <div><b>Default</b> ink-2 text</div>
+          <div><b>Hover</b> accent text</div>
+        </div>
+      </div>
+      <div class="comp-stage">
+        <span class="stage-note">selector: nav.top a</span>
+        <a class="btn-navlink">Work</a>
+        <a class="btn-navlink">About</a>
+        <a class="btn-navlink">Contact</a>
+      </div>
+    </div>
+
+    <div class="comp-block">
+      <div class="comp-info">
+        <p class="cname">Tag chip</p>
+        <p class="cdesc">Static metadata pill on project cards — category, stack, discipline.</p>
+        <div class="states">
+          <div><b>Default</b> hairline border (--rule) · muted mono text</div>
+          <div><b>State</b> non-interactive, no hover defined</div>
+        </div>
+      </div>
+      <div class="comp-stage">
+        <span class="stage-note">selector: .tagrow span</span>
+        <span class="btn-tag">Web</span>
+        <span class="btn-tag">UX / UI</span>
+        <span class="btn-tag">SaaS</span>
+      </div>
+    </div>
+
+    <div class="comp-block">
+      <div class="comp-info">
+        <p class="cname">Inline text link</p>
+        <p class="cdesc">Used for the email address inside the "meant" meta table.</p>
+        <div class="states">
+          <div><b>Default</b> accent text · accent underline</div>
+        </div>
+      </div>
+      <div class="comp-stage">
+        <span class="stage-note">selector: .meant-meta a</span>
+        <a class="btn-inline">lavinaalagh@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="comp-block">
+      <div class="comp-info">
+        <p class="cname">Word-link row</p>
+        <p class="cdesc">Hindi/English word-pair rows in the "also" list — the whole row acts as a link.</p>
+        <div class="states">
+          <div><b>Default</b> ink Hindi word + muted mono gloss</div>
+          <div><b>Hover</b> accent text · translateX(6px)</div>
+        </div>
+      </div>
+      <div class="comp-stage" style="background:var(--ink)">
+        <span class="stage-note" style="color:#efe9dd88">selector: .also</span>
+        <span class="btn-wordrow" style="color:var(--paper)">कविता <span class="en">poems</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ TOKENS ═══════════════════════ -->
+<section class="section" id="tokens" style="border-bottom:none">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">04 — System</div>
+      <div>
+        <h2>Component <em>tokens</em></h2>
+        <p class="dek">Spacing, radius, borders, shadow and breakpoints read straight from computed styles across the page.</p>
+      </div>
+    </div>
+
+    <div class="token-grid">
+      <div class="token-card">
+        <h4>Spacing scale (px)</h4>
+        <div class="spacing-scale">
+          <div class="spacing-row"><span class="val">6</span><span class="bar" style="width:6px"></span></div>
+          <div class="spacing-row"><span class="val">8</span><span class="bar" style="width:8px"></span></div>
+          <div class="spacing-row"><span class="val">14</span><span class="bar" style="width:14px"></span></div>
+          <div class="spacing-row"><span class="val">18</span><span class="bar" style="width:18px"></span></div>
+          <div class="spacing-row"><span class="val">24</span><span class="bar" style="width:24px"></span></div>
+          <div class="spacing-row"><span class="val">32</span><span class="bar" style="width:32px"></span></div>
+          <div class="spacing-row"><span class="val">48</span><span class="bar" style="width:48px"></span></div>
+          <div class="spacing-row"><span class="val">64</span><span class="bar" style="width:64px"></span></div>
+          <div class="spacing-row"><span class="val">80</span><span class="bar" style="width:80px"></span></div>
+          <div class="spacing-row"><span class="val">120</span><span class="bar" style="width:120px"></span></div>
+        </div>
+      </div>
+
+      <div class="token-card">
+        <h4>Border radius</h4>
+        <div class="radius-row">
+          <div class="radius-demo" style="border-radius:0">0px<br/>rects</div>
+          <div class="radius-demo" style="border-radius:50%">50%<br/>circles</div>
+        </div>
+        <p style="font-family:var(--serif); font-size:14px; color:var(--ink-2); margin-top:16px; max-width:38ch;">Sharp corners everywhere except icon buttons and dot markers — a deliberately drafted, technical-drawing feel.</p>
+      </div>
+
+      <div class="token-card">
+        <h4>Borders &amp; rules</h4>
+        <div class="border-demo-row">
+          <div>
+            <div class="border-demo" style="background:var(--ink)"></div>
+            <p style="font-family:var(--mono); font-size:11px; color:var(--muted); margin:6px 0 0">1px solid var(--ink) — strong dividers, buttons</p>
+          </div>
+          <div>
+            <div class="border-demo" style="background:var(--rule)"></div>
+            <p style="font-family:var(--mono); font-size:11px; color:var(--muted); margin:6px 0 0">1px solid var(--rule) — hairline section rules</p>
+          </div>
+          <div>
+            <div class="border-demo" style="background-image:repeating-linear-gradient(to right, #1a171455 0 6px, transparent 6px 12px)"></div>
+            <p style="font-family:var(--mono); font-size:11px; color:var(--muted); margin:6px 0 0">1px dashed #1a171455 — placeholder image slots</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="token-card">
+        <h4>Shadow</h4>
+        <div class="shadow-demo"></div>
+        <p style="font-family:var(--mono); font-size:11px; color:var(--muted); margin:0;">box-shadow: 8px 8px 0 var(--ink)</p>
+        <p style="font-family:var(--serif); font-size:14px; color:var(--ink-2); margin:10px 0 0; max-width:38ch;">One hard, blurless offset — a stamped card, not a floating one. Used once, on the "meant" contact card.</p>
+      </div>
+
+      <div class="token-card">
+        <h4>Breakpoints</h4>
+        <div class="bp-list">
+          <div><span class="bar" style="width:24px"></span><b>720px</b> — mobile: single column, tighter padding</div>
+          <div><span class="bar" style="width:40px"></span><b>860px</b> — tablet: grids collapse to 1fr</div>
+          <div><span class="bar" style="width:56px"></span><b>980px</b> — small desktop: "meant" grid stacks</div>
+        </div>
+      </div>
+
+      <div class="token-card">
+        <h4>Motion durations</h4>
+        <div class="motion-list">
+          <div><b>.25s ease</b> — button/link color, background, transform</div>
+          <div><b>.3s ease</b> — icon button hover</div>
+          <div><b>.35s ease</b> — project card background hover</div>
+          <div><b>.5s / .55s ease</b> — scroll-triggered step & scene reveals</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:16px;">
+    <div>LAVINA-DS · EXTRACTED 9 JUL 2026</div>
+    <div>SOURCE — <a href="https://lavina-folio-e7258c.netlify.app/" target="_blank" rel="noopener">LAVINA-FOLIO-E7258C.NETLIFY.APP</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
