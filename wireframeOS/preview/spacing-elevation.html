@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--wf-fill-2);}
+  .card{padding:30px 32px;box-sizing:border-box;}
+  .grid{display:flex;gap:24px;align-items:flex-end;}
+  .sw{display:flex;flex-direction:column;gap:10px;align-items:center;}
+  .box{width:104px;height:60px;border-radius:var(--wf-r-md);background:var(--wf-surface);}
+  .name{font:700 12px var(--wf-font-ui);color:var(--wf-ink);}
+  .val{font:400 11px var(--wf-font-ui);color:var(--wf-muted);}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="grid">
+    <div class="sw"><div class="box" style="box-shadow:var(--wf-shadow-inset)"></div><span class="name">Inset</span><span class="val">pressed fill</span></div>
+    <div class="sw"><div class="box" style="box-shadow:var(--wf-shadow-sm)"></div><span class="name">sm</span><span class="val">subtle lift</span></div>
+    <div class="sw"><div class="box" style="box-shadow:var(--wf-shadow-md)"></div><span class="name">md</span><span class="val">menus</span></div>
+    <div class="sw"><div class="box" style="box-shadow:var(--wf-shadow-marquee);background:var(--wf-ink-strong)"></div><span class="name">marquee</span><span class="val">cursor chip</span></div>
+  </div>
+</div>
+</body>
+</html>

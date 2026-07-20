@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="../assets/wf-icons.js"></script>
+<style>
+  html,body{margin:0;background:var(--wf-surface);}
+  .card{padding:26px 32px;box-sizing:border-box;display:flex;gap:24px;align-items:center;}
+  /* image placeholder: box with diagonal cross */
+  .ph{position:relative;border:1.5px solid var(--wf-ink);overflow:hidden;background:#fff;}
+  .ph::before,.ph::after{content:"";position:absolute;inset:0;background:var(--wf-ink);}
+  .ph::before{height:1.5px;top:50%;transform-origin:center;transform:translateY(-50%) rotate(var(--a));}
+  .ph::after{height:1.5px;top:50%;transform:translateY(-50%) rotate(calc(-1 * var(--a)));}
+  .rect{width:150px;height:104px;--a:34.7deg;border-radius:4px;}
+  .sq{width:104px;height:104px;--a:45deg;border-radius:4px;}
+  .avatar{width:72px;height:72px;border-radius:50%;border:1.5px solid var(--wf-ink);display:flex;align-items:center;justify-content:center;color:var(--wf-ink);}
+  .avatar wf-icon{font-size:42px;}
+  .cap{font:600 11px var(--wf-font-ui);color:var(--wf-muted);text-align:center;margin-top:8px;}
+  .it{display:flex;flex-direction:column;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="it"><div class="ph rect"></div><div class="cap">Image · 3:2</div></div>
+  <div class="it"><div class="ph sq"></div><div class="cap">Image · 1:1</div></div>
+  <div class="it"><div class="avatar"><wf-icon name="user"></wf-icon></div><div class="cap">Avatar</div></div>
+</div>
+</body>
+</html>

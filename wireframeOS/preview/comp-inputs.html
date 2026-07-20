@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="../assets/wf-icons.js"></script>
+<style>
+  html,body{margin:0;background:var(--wf-surface);}
+  .card{padding:26px 32px;box-sizing:border-box;display:flex;gap:24px;}
+  .field{display:flex;flex-direction:column;gap:6px;width:300px;}
+  label{font:400 15px var(--wf-font-ui);color:var(--wf-ink);letter-spacing:var(--wf-tracking-tight);}
+  .input{height:48px;border-radius:var(--wf-r-md);border:1.5px solid var(--wf-ink);background:#fff;
+         display:flex;align-items:center;gap:10px;padding:0 16px;font:700 16px var(--wf-font-ui);color:var(--wf-ink);}
+  .input.ph{font-weight:400;color:var(--wf-muted);}
+  .input.focus{outline:3px solid var(--wf-accent);outline-offset:0;}
+  .input wf-icon{font-size:20px;color:var(--wf-ink);}
+  .input .trail{margin-left:auto;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="field">
+    <label>Email</label>
+    <div class="input">mattsmith@mail.com</div>
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <div class="input focus">● ● ● ● ● ●<wf-icon name="eye" class="trail"></wf-icon></div>
+  </div>
+  <div class="field">
+    <label>Search</label>
+    <div class="input ph"><wf-icon name="search"></wf-icon>Placeholder…</div>
+  </div>
+</div>
+</body>
+</html>

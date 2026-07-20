@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--wf-surface);}
+  .card{padding:28px 32px;box-sizing:border-box;}
+  .marquee{display:flex;align-items:baseline;gap:18px;}
+  .sel{position:relative;display:inline-block;padding:2px 6px;}
+  .sel::before,.sel::after,.sel span.h{position:absolute;width:13px;height:13px;background:var(--wf-surface);border:3px solid var(--wf-accent-strong);box-sizing:border-box;}
+  .sel::before{content:"";left:-7px;top:-7px;}
+  .sel::after{content:"";right:-7px;top:-7px;}
+  .frame{position:absolute;inset:-7px;border:3px solid var(--wf-accent-strong);pointer-events:none;}
+  .hb{position:absolute;left:-7px;bottom:-7px;width:13px;height:13px;background:var(--wf-surface);border:3px solid var(--wf-accent-strong);box-sizing:border-box;}
+  .hb2{position:absolute;right:-7px;bottom:-7px;width:13px;height:13px;background:var(--wf-surface);border:3px solid var(--wf-accent-strong);box-sizing:border-box;}
+  .sub{margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="sel">
+    <div class="frame"></div><span class="hb"></span><span class="hb2"></span>
+    <div class="wf-display">Wireframing</div>
+  </div>
+  <div class="sub wf-h2" style="color:var(--wf-ink)">Starter Kit</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+/* ============================================================
+   WIREFRAMING STARTER KIT — Colors & Type tokens
+   A monochrome blue-gray wireframing UI kit. Everything is line
+   art on white; a single yellow "annotation" accent is the only
+   chroma. Built on Inter + Heroicons.
+   ============================================================ */
+
+/* ---- Webfonts (Google Fonts) ---- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Anek+Latin:wght@400;600;700&display=swap');
+/* NOTE: "Silka SemiBold" appears on the cover/marquee only. Silka is NOT on
+   Google Fonts — substituted with Inter 800. Flagged to the user. */
+
+:root {
+  /* ---------- CORE PALETTE ---------- */
+  /* Primary "ink" — the single workhorse color. Every stroke, label,
+     icon and filled control is this blue-gray. ~650 uses in the file. */
+  --wf-ink:        #545F71;   /* rgb(84,95,113)  primary stroke / text / fill */
+  --wf-ink-strong: #2A3A53;   /* rgb(42,58,83)   display headline ink (logo) */
+  --wf-ink-2:      #667080;   /* rgb(102,112,128) secondary ink */
+  --wf-text:       #1F2933;   /* rgb(31,41,51)   darkest body / artboard titles */
+
+  /* Neutrals — fills & dividers */
+  --wf-surface:    #FFFFFF;   /* canvas / card background */
+  --wf-fill:       #EEF1F4;   /* rgb(238,241,244) secondary fill / chips / dividers */
+  --wf-fill-2:     #F7F8FA;   /* even lighter wash */
+  --wf-muted:      #9BA5B7;   /* rgb(155,165,183) placeholder text / disabled icon */
+  --wf-line:       #BAC0CA;   /* rgb(186,192,202) device bezel / light hairline */
+  --wf-divider:    #393642;   /* rgb(57,54,66)  artboard-title underline */
+
+  /* Accent — "Annotations" yellow (the ONLY chroma in the system) */
+  --wf-accent:        #F6CA56; /* rgb(246,202,86) annotation / rating / toggle-on */
+  --wf-accent-strong: #F6BE2C; /* rgb(246,190,44) selection handles / marquee */
+  --wf-accent-wash:   #FFFAEF; /* rgb(255,250,239) faint yellow surface */
+  --wf-accent-text:   #936B06; /* rgb(147,107,6) text on yellow */
+
+  /* ---------- TYPE FAMILIES ---------- */
+  --wf-font-ui:      'Inter', system-ui, -apple-system, sans-serif;  /* all UI text */
+  --wf-font-alt:     'Anek Latin', 'Inter', sans-serif;              /* secondary headings */
+  --wf-font-display: 'Inter', 'Anek Latin', sans-serif;              /* marquee (Silka sub) */
+
+  /* ---------- TYPE SCALE ---------- */
+  /* Inter, tight tracking (-0.01em to -0.02em is used throughout) */
+  --wf-tracking:        -0.01em;
+  --wf-tracking-tight:  -0.02em;
+
+  --wf-h1-size: 32px; --wf-h1-weight: 700; --wf-h1-lh: 1.1;
+  --wf-h2-size: 28px; --wf-h2-weight: 700; --wf-h2-lh: 1.1;   /* artboard titles */
+  --wf-h3-size: 24px; --wf-h3-weight: 600; --wf-h3-lh: 1.2;
+  --wf-h4-size: 18px; --wf-h4-weight: 600; --wf-h4-lh: 1.3;
+  --wf-body-size: 16px; --wf-body-weight: 400; --wf-body-lh: 1.4;
+  --wf-body-sm-size: 14px; --wf-body-sm-weight: 400; --wf-body-sm-lh: 1.4;
+  --wf-caption-size: 12px; --wf-caption-weight: 400; --wf-caption-lh: 1.4;
+  --wf-heavy-size: 12px; --wf-heavy-weight: 700;  /* "HEAVY" all-caps label */
+  --wf-heavy-tracking: 0.08em;
+
+  /* ---------- RADII ---------- */
+  --wf-r-sm:  8px;    /* chips, small controls, color swatches */
+  --wf-r-md:  12px;   /* buttons, cards, inputs */
+  --wf-r-lg:  24px;   /* sheets, large surfaces, nav bars */
+  --wf-r-pill: 999px; /* pill buttons, toggles */
+
+  /* ---------- STROKES ---------- */
+  --wf-stroke:      1.5px solid var(--wf-ink);  /* default control outline */
+  --wf-stroke-thin: 1px solid var(--wf-ink);
+  --wf-stroke-hair: 1px solid var(--wf-fill);   /* internal dividers */
+  --wf-dash:        1px dashed var(--wf-accent); /* annotation / spec frames */
+
+  /* ---------- ELEVATION ---------- */
+  /* Wireframes are mostly flat. Shadows are faint and rare. */
+  --wf-shadow-inset: inset 0 4px 4px 0 rgba(0,0,0,0.05); /* pressed filled swatch */
+  --wf-shadow-sm:    0 1px 2px 0 rgba(0,0,0,0.05);
+  --wf-shadow-md:    0 4px 12px 0 rgba(64,80,106,0.12);   /* menus / popovers */
+  --wf-shadow-marquee: 0 7px 12px 0 rgba(64,80,106,0.5);  /* cursor / selection chip */
+
+  /* ---------- SPACING (8pt base) ---------- */
+  --wf-space-1: 4px;
+  --wf-space-2: 8px;
+  --wf-space-3: 12px;
+  --wf-space-4: 16px;
+  --wf-space-5: 24px;
+  --wf-space-6: 32px;
+  --wf-space-7: 48px;
+}
+
+/* ============================================================
+   SEMANTIC TYPE CLASSES
+   ============================================================ */
+.wf-display {
+  font-family: var(--wf-font-display);
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 0.95;
+  letter-spacing: var(--wf-tracking-tight);
+  color: var(--wf-ink-strong);
+}
+.wf-h1 { font: var(--wf-h1-weight) var(--wf-h1-size)/var(--wf-h1-lh) var(--wf-font-ui); letter-spacing: var(--wf-tracking); color: var(--wf-text); }
+.wf-h2 { font: var(--wf-h2-weight) var(--wf-h2-size)/var(--wf-h2-lh) var(--wf-font-ui); letter-spacing: var(--wf-tracking); color: var(--wf-text); }
+.wf-h3 { font: var(--wf-h3-weight) var(--wf-h3-size)/var(--wf-h3-lh) var(--wf-font-ui); letter-spacing: var(--wf-tracking); color: var(--wf-ink); }
+.wf-h4 { font: var(--wf-h4-weight) var(--wf-h4-size)/var(--wf-h4-lh) var(--wf-font-ui); letter-spacing: var(--wf-tracking); color: var(--wf-ink); }
+.wf-body    { font: var(--wf-body-weight) var(--wf-body-size)/var(--wf-body-lh) var(--wf-font-ui); letter-spacing: var(--wf-tracking); color: var(--wf-ink); }
+.wf-body-sm { font: var(--wf-body-sm-weight) var(--wf-body-sm-size)/var(--wf-body-sm-lh) var(--wf-font-ui); letter-spacing: var(--wf-tracking); color: var(--wf-ink); }
+.wf-caption { font: var(--wf-caption-weight) var(--wf-caption-size)/var(--wf-caption-lh) var(--wf-font-ui); letter-spacing: var(--wf-tracking); color: var(--wf-muted); }
+.wf-heavy   { font: var(--wf-heavy-weight) var(--wf-heavy-size) var(--wf-font-ui); letter-spacing: var(--wf-heavy-tracking); text-transform: uppercase; color: var(--wf-ink); }
+.wf-link    { font: 600 var(--wf-body-size)/var(--wf-body-lh) var(--wf-font-ui); color: var(--wf-ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* ============================================================
+   ICON SYSTEM — Heroicons rendered as inline SVG via the
+   <wf-icon name="search"></wf-icon> web component (assets/wf-icons.js).
+   Inline SVG inherits `color`, so icons take ANY color and the
+   default size is 1em — set font-size or width/height to scale.
+   ============================================================ */
+wf-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1em; height: 1em; line-height: 0; color: inherit; flex: none;
+}
+wf-icon svg { width: 100%; height: 100%; display: block; fill: currentColor; }

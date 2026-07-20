@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="../assets/wf-icons.js"></script>
+<style>
+  html,body{margin:0;background:var(--wf-fill-2);}
+  .card{padding:24px 32px;box-sizing:border-box;display:flex;gap:24px;align-items:flex-start;}
+  .panel{background:#fff;border:1.5px solid var(--wf-ink);border-radius:var(--wf-r-md);overflow:hidden;}
+  .li{width:320px;}
+  .row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid var(--wf-fill);}
+  .row:last-child{border-bottom:none;}
+  .thumb{width:44px;height:44px;border-radius:8px;background:var(--wf-fill);flex:none;display:flex;align-items:center;justify-content:center;color:var(--wf-muted);}
+  .thumb wf-icon{font-size:22px;}
+  .t1{font:600 15px var(--wf-font-ui);color:var(--wf-ink);letter-spacing:var(--wf-tracking);}
+  .t2{font:400 13px var(--wf-font-ui);color:var(--wf-muted);}
+  .chev{margin-left:auto;color:var(--wf-muted);font-size:18px;}
+  .mc{width:240px;}
+  .ph{position:relative;height:140px;border-bottom:1.5px solid var(--wf-ink);background:#fff;overflow:hidden;}
+  .ph::before,.ph::after{content:"";position:absolute;inset:0;height:1.5px;top:50%;background:var(--wf-ink);}
+  .ph::before{transform:translateY(-50%) rotate(30.3deg);}
+  .ph::after{transform:translateY(-50%) rotate(-30.3deg);}
+  .body{padding:14px 16px;display:flex;flex-direction:column;gap:6px;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="panel li">
+    <div class="row"><span class="thumb"><wf-icon name="photograph"></wf-icon></span><div><div class="t1">List item title</div><div class="t2">Supporting detail</div></div><wf-icon name="chevron-right" class="chev"></wf-icon></div>
+    <div class="row"><span class="thumb"><wf-icon name="mail"></wf-icon></span><div><div class="t1">List item title</div><div class="t2">Supporting detail</div></div><wf-icon name="chevron-right" class="chev"></wf-icon></div>
+    <div class="row"><span class="thumb"><wf-icon name="calendar"></wf-icon></span><div><div class="t1">List item title</div><div class="t2">Supporting detail</div></div><wf-icon name="chevron-right" class="chev"></wf-icon></div>
+  </div>
+  <div class="panel mc">
+    <div class="ph"></div>
+    <div class="body"><div class="t1">Card title</div><div class="t2">A short line of descriptive caption text.</div></div>
+  </div>
+</div>
+</body>
+</html>

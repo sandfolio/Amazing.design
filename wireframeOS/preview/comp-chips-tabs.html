@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--wf-surface);}
+  .card{padding:26px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px;}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+  .chip{font:600 14px var(--wf-font-ui);color:var(--wf-ink);padding:7px 16px;border-radius:999px;border:1.5px solid var(--wf-ink);background:#fff;letter-spacing:var(--wf-tracking);}
+  .chip.on{background:var(--wf-ink);color:#fff;}
+  .tabs{display:flex;border-bottom:1.5px solid var(--wf-fill);gap:28px;}
+  .tab{font:600 15px var(--wf-font-ui);color:var(--wf-muted);padding:0 2px 12px;letter-spacing:var(--wf-tracking);position:relative;}
+  .tab.on{color:var(--wf-ink);}
+  .tab.on::after{content:"";position:absolute;left:0;right:0;bottom:-1.5px;height:2.5px;background:var(--wf-ink);border-radius:2px;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="row">
+    <span class="chip on">All</span>
+    <span class="chip">Active</span>
+    <span class="chip">Drafts</span>
+    <span class="chip">Archived</span>
+  </div>
+  <div class="tabs">
+    <span class="tab on">Overview</span>
+    <span class="tab">Activity</span>
+    <span class="tab">Settings</span>
+  </div>
+</div>
+</body>
+</html>

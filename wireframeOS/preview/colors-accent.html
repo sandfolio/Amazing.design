@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--wf-surface);}
+  .card{padding:26px 32px;box-sizing:border-box;}
+  .grid{display:flex;gap:18px;align-items:flex-start;}
+  .sw{display:flex;flex-direction:column;gap:8px;}
+  .chip{width:118px;height:74px;border-radius:var(--wf-r-sm);border:1px solid var(--wf-line);}
+  .name{font:700 13px var(--wf-font-ui);color:var(--wf-ink);}
+  .hex{font:400 12px var(--wf-font-ui);color:var(--wf-muted);}
+  .note{margin-left:6px;font:400 12px var(--wf-font-ui);color:var(--wf-muted);max-width:150px;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="grid">
+    <div class="sw"><div class="chip" style="background:var(--wf-accent)"></div><span class="name">Accent</span><span class="hex">#F6CA56</span></div>
+    <div class="sw"><div class="chip" style="background:var(--wf-accent-strong)"></div><span class="name">Accent Strong</span><span class="hex">#F6BE2C</span></div>
+    <div class="sw"><div class="chip" style="background:var(--wf-accent-wash)"></div><span class="name">Accent Wash</span><span class="hex">#FFFAEF</span></div>
+    <p class="note">The single chroma in the system — used only for annotations, ratings, toggle-on &amp; selection handles.</p>
+  </div>
+</div>
+</body>
+</html>

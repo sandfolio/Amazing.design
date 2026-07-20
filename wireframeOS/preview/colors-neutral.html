@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--wf-surface);}
+  .card{padding:26px 32px;box-sizing:border-box;}
+  .grid{display:flex;gap:18px;}
+  .sw{display:flex;flex-direction:column;gap:8px;}
+  .chip{width:118px;height:74px;border-radius:var(--wf-r-sm);border:1px solid var(--wf-line);}
+  .name{font:700 13px var(--wf-font-ui);color:var(--wf-ink);}
+  .hex{font:400 12px var(--wf-font-ui);color:var(--wf-muted);}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="grid">
+    <div class="sw"><div class="chip" style="background:var(--wf-surface)"></div><span class="name">Surface</span><span class="hex">#FFFFFF</span></div>
+    <div class="sw"><div class="chip" style="background:var(--wf-fill);border-color:var(--wf-fill)"></div><span class="name">Fill</span><span class="hex">#EEF1F4</span></div>
+    <div class="sw"><div class="chip" style="background:var(--wf-line);border-color:var(--wf-line)"></div><span class="name">Line / Bezel</span><span class="hex">#BAC0CA</span></div>
+    <div class="sw"><div class="chip" style="background:var(--wf-muted);border-color:var(--wf-muted)"></div><span class="name">Muted</span><span class="hex">#9BA5B7</span></div>
+  </div>
+</div>
+</body>
+</html>

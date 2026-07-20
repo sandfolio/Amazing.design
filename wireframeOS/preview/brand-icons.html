@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="../assets/wf-icons.js"></script>
+<style>
+  html,body{margin:0;background:var(--wf-surface);}
+  .card{padding:24px 30px;box-sizing:border-box;}
+  .grid{display:grid;grid-template-columns:repeat(11,1fr);gap:20px 0;justify-items:center;color:var(--wf-ink);}
+  wf-icon{font-size:26px;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="grid" id="g"></div>
+</div>
+<script>
+  const icons=['search','mail','calendar','bell','home','user','user-circle','heart','star','cog','plus-circle',
+  'check','chevron-down','chevron-right','chevron-left','trash','pencil','pencil-alt','camera','photograph','eye','shopping-cart',
+  'filter','menu','arrow-left','arrow-right','clock','location-marker','chat-alt','bookmark','share','information-circle',
+  'sparkles','view-grid','view-list','selector','microphone','credit-card','lock-closed','adjustments','phone','dots-vertical'];
+  document.getElementById('g').innerHTML=icons.map(n=>`<wf-icon name="${n}"></wf-icon>`).join('');
+</script>
+</body>
+</html>

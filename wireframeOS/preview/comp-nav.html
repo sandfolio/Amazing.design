@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="../assets/wf-icons.js"></script>
+<style>
+  html,body{margin:0;background:var(--wf-fill-2);}
+  .card{padding:24px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;align-items:center;}
+  .bar{width:360px;background:#fff;border:1.5px solid var(--wf-ink);}
+  .top{height:56px;border-radius:14px;display:flex;align-items:center;padding:0 16px;color:var(--wf-ink);}
+  .top wf-icon{font-size:22px;}
+  .title{font:600 17px var(--wf-font-ui);color:var(--wf-ink);margin:0 auto;letter-spacing:var(--wf-tracking);}
+  .tabs{height:64px;border-radius:14px;display:flex;align-items:center;justify-content:space-around;padding:0 8px;}
+  .tab{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--wf-muted);}
+  .tab wf-icon{font-size:24px;}
+  .tab .tl{font:500 11px var(--wf-font-ui);}
+  .tab.on{color:var(--wf-ink);}
+  .tab.on .tl{font-weight:700;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="bar top">
+    <wf-icon name="chevron-left"></wf-icon>
+    <span class="title">Home</span>
+    <wf-icon name="dots-vertical"></wf-icon>
+  </div>
+  <div class="bar tabs">
+    <div class="tab on"><wf-icon name="home"></wf-icon><span class="tl">Home</span></div>
+    <div class="tab"><wf-icon name="search"></wf-icon><span class="tl">Search</span></div>
+    <div class="tab"><wf-icon name="heart"></wf-icon><span class="tl">Saved</span></div>
+    <div class="tab"><wf-icon name="user"></wf-icon><span class="tl">Profile</span></div>
+  </div>
+</div>
+</body>
+</html>

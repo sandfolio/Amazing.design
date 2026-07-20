@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="../assets/wf-icons.js"></script>
+<style>
+  html,body{margin:0;background:var(--wf-surface);}
+  .card{padding:28px 32px;box-sizing:border-box;display:flex;gap:48px;align-items:center;}
+  .col{display:flex;flex-direction:column;gap:18px;}
+  .opt{display:flex;align-items:center;gap:12px;font:400 15px var(--wf-font-ui);color:var(--wf-ink);}
+  .tog{width:52px;height:30px;border-radius:999px;background:var(--wf-fill);border:1.5px solid var(--wf-ink);position:relative;}
+  .tog .knob{position:absolute;top:2px;left:2px;width:23px;height:23px;border-radius:50%;background:var(--wf-ink);}
+  .tog.on{background:var(--wf-ink);}
+  .tog.on .knob{left:auto;right:2px;background:#fff;}
+  .cb{width:26px;height:26px;border-radius:7px;border:1.5px solid var(--wf-ink);display:flex;align-items:center;justify-content:center;}
+  .cb.on{background:var(--wf-ink);color:#fff;}
+  .cb wf-icon{font-size:18px;}
+  .rd{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--wf-ink);display:flex;align-items:center;justify-content:center;}
+  .rd.on::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--wf-ink);}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="col">
+    <div class="opt"><span class="tog on"><span class="knob"></span></span> On</div>
+    <div class="opt"><span class="tog"><span class="knob"></span></span> Off</div>
+  </div>
+  <div class="col">
+    <div class="opt"><span class="cb on"><wf-icon name="check"></wf-icon></span> Checked</div>
+    <div class="opt"><span class="cb"></span> Unchecked</div>
+  </div>
+  <div class="col">
+    <div class="opt"><span class="rd on"></span> Selected</div>
+    <div class="opt"><span class="rd"></span> Unselected</div>
+  </div>
+</div>
+</body>
+</html>
